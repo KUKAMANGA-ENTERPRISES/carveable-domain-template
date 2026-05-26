@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "runsnative": {
+      "command": "node",
+      "args": ["C:/_DEV/KUKAMANGA/runsnative/packages/mcp-server/dist/index.js"],
+      "env": {
+        "RUNSNATIVE_CONTENT_ROOT": "C:/_DEV/KUKAMANGA/runsnative/content"
+      }
+    }
+  }
+}

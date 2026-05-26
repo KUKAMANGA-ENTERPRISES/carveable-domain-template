@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RunsNative · Playpen</title>
+
+  <!-- Brand tokens — swap this one line to retheme everything -->
+  <link rel="stylesheet" href="./node_modules/@runsnative/brand-default/tokens.css">
+
+  <!-- Import map — resolves bare @runsnative/* specifiers to local files -->
+  <script type="importmap">
+  {
+    "imports": {
+      "@runsnative/button": "./node_modules/@runsnative/components/components/button/run-button.js"
+    }
+  }
+  </script>
+
+  <!-- Register components -->
+  <script type="module">
+    import '@runsnative/button';
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #1e293b;
+      background: var(--run-color-surface-page, #f8fafc);
+      padding: 2.5rem;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0 0 2rem;
+      color: #0f172a;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+      margin-bottom: 0.75rem;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>RunsNative · Playpen</h1>
+
+  <div class="section">
+    <div class="section-label">Variants</div>
+    <div class="row">
+      <run-button variant="primary">Primary</run-button>
+      <run-button variant="secondary">Secondary</run-button>
+      <run-button variant="ghost">Ghost</run-button>
+      <run-button variant="danger">Danger</run-button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Sizes</div>
+    <div class="row">
+      <run-button variant="primary" size="sm">Small</run-button>
+      <run-button variant="primary" size="md">Medium</run-button>
+      <run-button variant="primary" size="lg">Large</run-button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">States</div>
+    <div class="row">
+      <run-button variant="primary" disabled>Disabled</run-button>
+      <run-button variant="secondary" disabled>Disabled</run-button>
+      <run-button variant="primary" loading>Loading</run-button>
+    </div>
+  </div>
+
+</body>
+</html>

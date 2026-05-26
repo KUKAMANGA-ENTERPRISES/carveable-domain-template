@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RunsNative · Button</title>
+  <style>
+/* RunsNative · Brand Default
+   Sets explicit values for all --run-* design tokens.
+   Components read these via CSS custom properties with fallback chains,
+   so this file is optional — but setting it makes every token intentional.
+   Swap this <link> for a different brand file to retheme the whole page. */
+
+:root {
+
+  /* ── Color: Action (Primary) ── */
+  --run-color-surface-action-primary:         #2563eb;
+  --run-color-surface-action-primary-hover:   #1d4ed8;
+  --run-color-surface-action-primary-active:  #1e40af;
+  --run-color-text-on-action-primary:         #ffffff;
+  --run-color-border-action-primary:          transparent;
+
+  /* ── Color: Action (Secondary) ── */
+  --run-color-surface-action-secondary:        #e2e8f0;
+  --run-color-surface-action-secondary-hover:  #cbd5e1;
+  --run-color-surface-action-secondary-active: #94a3b8;
+  --run-color-text-action-secondary:           #334155;
+
+  /* ── Color: Action (Ghost) ── */
+  --run-color-text-action-ghost:               #334155;
+  --run-color-surface-action-ghost-hover:      rgba(0, 0, 0, 0.06);
+  --run-color-surface-action-ghost-active:     rgba(0, 0, 0, 0.10);
+
+  /* ── Color: Action (Danger) ── */
+  --run-color-surface-action-danger:           #dc2626;
+  --run-color-surface-action-danger-hover:     #b91c1c;
+  --run-color-surface-action-danger-active:    #991b1b;
+  --run-color-text-on-action-danger:           #ffffff;
+
+  /* ── Color: Surface ── */
+  --run-color-surface-default:  #ffffff;
+  --run-color-surface-page:     #f8fafc;
+
+  /* ── Color: Border ── */
+  --run-color-border-focus:     #2563eb;
+
+  /* ── Color: Intent ── */
+  --run-color-intent-primary-base:    #2563eb;
+  --run-color-intent-primary-on:      #ffffff;
+  --run-color-intent-neutral-subtle:  #f1f5f9;
+  --run-color-neutral-700:            #334155;
+
+  /* ── Color: Feedback ── */
+  --run-color-feedback-success-background:  #dcfce7;
+  --run-color-feedback-success-on:          #166534;
+  --run-color-feedback-warning-background:  #fef9c3;
+  --run-color-feedback-warning-on:          #854d0e;
+  --run-color-feedback-danger-background:   #fee2e2;
+  --run-color-feedback-danger-on:           #991b1b;
+
+  /* ── Color: State ── */
+  --run-color-state-disabled-opacity: 0.4;
+
+  /* ── Space ── */
+  --run-space-gap-sm:       6px;
+  --run-space-inset-sm:     6px;
+  --run-space-inset-md:     14px;
+  --run-space-semantic-xs:  4px;
+  --run-space-semantic-sm:  6px;
+
+  /* ── Size ── */
+  --run-size-interactive-height-sm:    32px;
+  --run-size-interactive-height-md:    38px;
+  --run-size-interactive-height-lg:    46px;
+  --run-size-interactive-min-width:    0px;
+  --run-size-icon-sm:                  18px;
+  --run-size-icon-md:                  22px;
+
+  /* ── Typography ── */
+  --run-font-size-xs:        11px;
+  --run-font-size-body-sm:   13px;
+  --run-font-size-body-md:   14px;
+  --run-font-size-body-lg:   16px;
+  --run-font-weight-medium:  500;
+
+  /* ── Radius ── */
+  --run-radius-interactive-md:  6px;
+  --run-radius-semantic-pill:   9999px;
+
+  /* ── Motion ── */
+  --run-motion-semantic-standard-duration:   150ms;
+  --run-motion-semantic-attention-duration:  1.5s;
+  --run-motion-semantic-attention-easing:    ease-in-out;
+  --run-motion-easing-decelerate:            cubic-bezier(0.0, 0.0, 0.2, 1);
+  --run-motion-easing-standard:              cubic-bezier(0.4, 0.0, 0.2, 1);
+
+}
+
+    /* ── Page chrome ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      color: #1e293b;
+      background: var(--run-color-surface-page, #f8fafc);
+      padding: 2.5rem;
+      margin: 0;
+    }
+    h1 { font-size: 1.125rem; font-weight: 600; margin: 0 0 2rem; color: #0f172a; }
+    .section { margin-bottom: 2rem; }
+    .section-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #94a3b8; margin-bottom: 0.75rem;
+    }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  </style>
+  <script type="module">
+var w=Object.defineProperty;var x=(a,t)=>{for(var r in t)w(a,r,{get:t[r],enumerable:!0})};var A=window.matchMedia("(prefers-reduced-motion: reduce)"),z=typeof CSS<"u"&&CSS.supports&&CSS.supports("container-type","inline-size"),C=0,m=new WeakSet;function y(a,t){return t.attribute?t.attribute:a.replace(/([A-Z])/g,"-$1").toLowerCase()}function g(a){if(m.has(a))return;let t=a.properties||{},r=new Map;for(let[e,i]of Object.entries(t)){let n=Object.getOwnPropertyDescriptor(a.prototype,e);if(n&&(n.get||n.set))continue;let s=y(e,i);r.set(s,{name:e,config:i}),Object.defineProperty(a.prototype,e,{get(){return this._properties[e]},set(o){let d=this._properties[e];i.type===Boolean?o=!!o:i.type===Number?o=Number(o):i.type===String&&(o=o==null?"":String(o)),d!==o&&(this._properties[e]=o,this._changedProperties.set(e,d),i.reflect&&this._initialized&&(this._reflectingProperty=!0,i.type===Boolean?o?this.setAttribute(s,""):this.removeAttribute(s):o!=null&&this.setAttribute(s,String(o)),this._reflectingProperty=!1),this._initialized&&this.requestUpdate())},enumerable:!0,configurable:!0})}a._attrToProperty=r,m.add(a)}var h=class extends HTMLElement{static _reducedMotionQuery=A;static get observedAttributes(){g(this);let t=this.properties||{},r=[];for(let[e,i]of Object.entries(t))i.reflect!==!1&&r.push(y(e,i));return r}static get properties(){return{}}#t=null;#e=[];constructor(){super(),g(this.constructor),this._initialized=!1,this._properties={},this._changedProperties=new Map,this._reflectingProperty=!1,this._updatePending=!1,this._firstUpdate=!0,this._updatePromise=null,this._updateResolve=null;let t=this.constructor.properties||{};for(let[r,e]of Object.entries(t)){let i=typeof e.default=="function"?e.default():e.default;this._properties[r]=i!==void 0?i:this._getTypeDefault(e.type)}this.#t=r=>this.#r(r)}_getTypeDefault(t){if(t===Boolean)return!1;if(t===Number)return 0;if(t===String)return"";if(t===Array)return[];if(t===Object)return{}}get reducedMotion(){return this.constructor._reducedMotionQuery.matches}set reducedMotion(t){throw new Error("reducedMotion is read-only")}#r(t){this.#i(t.matches)}#i(t){t?this.setAttribute("data-reduced-motion",""):this.removeAttribute("data-reduced-motion")}connectedCallback(){if(!this._initialized){this._initializeShadowDOM(),this._initialized=!0;let t=this.constructor.properties||{};for(let r of Object.keys(t))this._changedProperties.set(r,void 0)}this.#i(this.constructor._reducedMotionQuery.matches),this.constructor._reducedMotionQuery.addEventListener("change",this.#t),z&&this.setAttribute("cq-supported",""),this.style.viewTransitionName||(this.style.viewTransitionName=`${this.localName}-${++C}`),this.style.getPropertyValue("--_instance-seed")||this.style.setProperty("--_instance-seed",String(Math.random())),this.requestUpdate()}disconnectedCallback(){if(this._activeCplusSkin){try{this._activeCplusSkin.module.deactivate?.(this)}catch(t){console.error(`[${this.localName}] error during skin deactivate:`,t)}this._activeCplusSkin=null}this.constructor._reducedMotionQuery.removeEventListener("change",this.#t);for(let{target:t,type:r,handler:e,options:i}of this.#e)t.removeEventListener(r,e,i);this.#e=[]}attributeChangedCallback(t,r,e){if(r===e||this._reflectingProperty)return;let i=this.constructor._attrToProperty;if(!i)return;let n=i.get(t);if(!n)return;let{name:s,config:o}=n,d;o.type===Boolean?d=e!==null:o.type===Number?d=e===null?o.default:Number(e):d=e===null?o.default:e,this._properties[s]=d,this._changedProperties.set(s,r),this._initialized&&this.requestUpdate()}_initializeShadowDOM(){this.shadowRoot||this.attachShadow({mode:"open"})}requestUpdate(){return this._updatePending?this.updateComplete:(this._updatePending=!0,this._updatePromise=new Promise(t=>{this._updateResolve=t}),queueMicrotask(()=>this._performUpdate()),this._updatePromise)}_performUpdate(){if(!this._updatePending)return;let t=new Map(this._changedProperties);this._changedProperties.clear(),this._updatePending=!1;let r=this._updateResolve;try{this.willUpdate(t),this._render(),this.updated(t),this._firstUpdate&&(this._firstUpdate=!1,this.firstUpdated(t))}catch(e){console.error(`[${this.localName}] error during update lifecycle:`,e)}finally{r&&r(!0)}}_render(){if(!this.shadowRoot)return;let t=this.render();if(typeof t=="string"){let r=this.constructor.styles,e=r?`<style data-run-styles>${r}</style>`:"";this.shadowRoot.innerHTML=e+t}}render(){return""}willUpdate(t){}updated(t){}firstUpdated(t){}_applySkinTier({skinModule:t,styleSheet:r,cssApply:e}){let i=t?.meta?.renderingTier??"css";if(i==="css"){if(this._activeCplusSkin){try{this._activeCplusSkin.module.deactivate?.(this)}catch(o){console.error(`[${this.localName}] error during skin deactivate:`,o)}this._activeCplusSkin=null}e?.();return}if(this._activeCplusSkin?.module===t)return;r&&(this.shadowRoot.adoptedStyleSheets=[r]),t.render(this);let n=this.shadowRoot.querySelector("canvas");if(!n)throw new Error(`[${this.localName}] ${i} skin render() produced no <canvas>`);if(t.activate?.(this,n),this._activeCplusSkin={module:t},(t.meta?.tokens??[]).length&&typeof t.tokenDidChange=="function")throw new Error(`[${this.localName}] token-consuming C+ skins require the style-observer mechanism (RUN-298, addendum \xA78) \u2014 not implemented by the RUN-380 substrate`)}get updateComplete(){return this._updatePromise||Promise.resolve(!0)}requestRender(){return this.requestUpdate()}_buildPropertyManifest(){let t=this.constructor.properties||{},r=Object.entries(t);if(r.length>0)return r.map(([i,n])=>({name:i,type:n.type?.name??"String",default:n.default,value:this[i],reflect:n.reflect!==!1}));let e=this.constructor.observedAttributes;return!e||e.length===0?[]:e.map(i=>{let n=i.replace(/-([a-z])/g,(d,c)=>c.toUpperCase()),s=this[n];return{name:n,type:s===void 0?"String":typeof s=="boolean"?"Boolean":typeof s=="number"?"Number":"String",value:s,reflect:!0}})}getInspectorManifest(){return{tagName:this.localName,componentName:this.constructor.componentName??this.localName,version:this.constructor.version??"0.0.0",category:this.constructor.category??"unknown",layer:this.constructor.layer??"atomic",properties:this._buildPropertyManifest(),parts:this.constructor.parts??[],slots:this.constructor.slots??[],skin:this._resolvedSkinName??"default",events:this.constructor.events??[]}}safeHTML(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}emit(t,r,e={}){let i=new CustomEvent(t,{bubbles:!0,composed:!0,cancelable:!1,...e,detail:r});return this.dispatchEvent(i)}listen(t,r,e,i){t.addEventListener(r,e,i),this.#e.push({target:t,type:r,handler:e,options:i})}};var P=Symbol("runSkinResolved"),v=new WeakMap;function p(a){let t=v.get(a);return t||(t={mods:new Map,skinSheets:new Map,baseSheet:void 0},v.set(a,t)),t}function l(a){if(!a)return null;let t=typeof a.render=="function"?a:a.default?a.default:a;return!t||typeof t.styles!="string"||typeof t.render!="function"?null:t}function T(a){let t=p(a);if(t.baseSheet!==void 0)return t.baseSheet;let r=a.styles;if(typeof r=="string"&&r.length>0){let e=new CSSStyleSheet;e.replaceSync(r),t.baseSheet=e}else t.baseSheet=null;return t.baseSheet}function R(a,t,r){let e=p(a),i=e.skinSheets.get(t);return i||(i=new CSSStyleSheet,i.replaceSync(r.styles||""),e.skinSheets.set(t,i)),i}function k(a){class t extends a{static defaultSkin=null;static skinLoaders={};get[P](){return!0}_resolveSkinName(){let e=typeof this.skin=="string"&&this.skin||this.getAttribute("skin");if(e)return e;let i=this;for(;i;){let s=i.parentElement;if(!s){let d=i.getRootNode&&i.getRootNode();if(d&&d.host){i=d.host;continue}break}for(;s;){let d=s.getAttribute&&s.getAttribute("data-run-skin");if(d)return d;s=s.parentElement}let o=i.getRootNode&&i.getRootNode();i=o&&o.host?o.host:null}let n=typeof document<"u"&&document.documentElement&&document.documentElement.getAttribute("data-run-skin");return n||"default"}static async loadSkin(e){if(!e||e==="default")return l(this.defaultSkin);let i=p(this);if(i.mods.has(e))return i.mods.get(e);let n=this.skinLoaders&&this.skinLoaders[e];if(typeof n!="function")return console.warn(`[skin-resolution] no loader registered for skin "${e}" on <${this.componentTag||this.name||"component"}>; using default`),i.mods.set(e,null),null;try{let s=l(await n());return s?(i.mods.set(e,s),s):(console.error(`[skin-resolution] skin module "${e}" is malformed (missing string \`styles\` or function \`render\`); using default`),i.mods.set(e,null),null)}catch(s){return console.error(`[skin-resolution] failed to load skin "${e}"; using default`,s),i.mods.set(e,null),null}}static preloadSkin(e){return this.loadSkin(e)}refreshSkin(){return this.requestUpdate()}_render(){if(!this.shadowRoot)return;let e=this.constructor,i=this._resolveSkinName(),n,s;if(i==="default")n=l(e.defaultSkin),s="default";else{let c=p(e);if(c.mods.has(i)){let u=c.mods.get(i);u?(n=u,s=i):(n=l(e.defaultSkin),s="default")}else e.loadSkin(i).then(u=>{u&&this.isConnected&&this.requestUpdate()}),n=l(e.defaultSkin),s="default"}if(!n){console.error(`[skin-resolution] <${this.localName}> has no valid default skin; nothing rendered. Set \`static defaultSkin\`.`),this._resolvedSkinName="default";return}let o=T(e),d=R(e,s,n);this.shadowRoot.adoptedStyleSheets=o?[o,d]:[d],this._resolvedSkinName=s,this._resolvedSkinModule=n,n.render(this)}getResolvedSkinModule(){return this._resolvedSkinModule||null}}return t}var f={};x(f,{render:()=>q,styles:()=>N});var S=["css","canvas-2d","webgl"];function _({styles:a,render:t,activate:r,deactivate:e,tokenDidChange:i,meta:n}={}){if(typeof a!="string")throw new TypeError('defineSkin: "styles" must be a CSS string');if(typeof t!="function")throw new TypeError('defineSkin: "render" must be a function(host)');for(let[o,d]of[["activate",r],["deactivate",e],["tokenDidChange",i]])if(d!==void 0&&typeof d!="function")throw new TypeError(`defineSkin: "${o}" must be a function when provided`);if(n!==void 0){if(typeof n!="object"||n===null)throw new TypeError('defineSkin: "meta" must be an object when provided');if(!S.includes(n.renderingTier))throw new TypeError(`defineSkin: "meta.renderingTier" must be one of ${S.join(", ")}`);if(n.tokens!==void 0&&!Array.isArray(n.tokens))throw new TypeError('defineSkin: "meta.tokens" must be an array when provided')}let s={styles:a,render:t};return r!==void 0&&(s.activate=r),e!==void 0&&(s.deactivate=e),i!==void 0&&(s.tokenDidChange=i),n!==void 0&&(s.meta=Object.freeze({renderingTier:n.renderingTier,tokens:Object.freeze([...n.tokens??[]])})),Object.freeze(s)}var U=`
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :host {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  [part="base"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--run-button-gap, var(--run-space-gap-sm, 6px));
+    height: var(--run-button-height, var(--run-size-interactive-height-md, 38px));
+    min-width: var(--run-button-min-width, var(--run-size-interactive-min-width, 0));
+    padding: var(--run-button-padding-y, var(--run-space-inset-sm, 6px))
+             var(--run-button-padding-x, var(--run-space-inset-md, 14px));
+    font-family: inherit;
+    font-size: var(--run-button-font-size, var(--run-font-size-body-md, 14px));
+    font-weight: var(--run-button-font-weight, var(--run-font-weight-medium, 500));
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: var(--run-button-border-radius, var(--run-radius-interactive-md, 6px));
+    border: 1px solid transparent;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    text-decoration: none;
+    position: relative;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+    width: 100%;
+  }
+
+  /* \u2500\u2500 Focus ring \u2500\u2500 */
+  [part="base"]:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--run-color-surface-default, #fff),
+      0 0 0 4px var(--run-button-focus-ring-color, var(--run-color-border-focus, #2563eb));
+  }
+
+  /* \u2500\u2500 Variants \u2500\u2500 */
+  [part="base"][data-variant="primary"] {
+    background: var(--run-button-background, var(--run-color-surface-action-primary, #2563eb));
+    color: var(--run-button-color, var(--run-color-text-on-action-primary, #fff));
+    border-color: var(--run-button-border-color, var(--run-color-border-action-primary, transparent));
+  }
+  [part="base"][data-variant="primary"]:hover:not([data-disabled]):not([data-loading]) {
+    background: var(--run-button-background-hover, var(--run-color-surface-action-primary-hover, #1d4ed8));
+  }
+  [part="base"][data-variant="primary"]:active:not([data-disabled]):not([data-loading]) {
+    background: var(--run-button-background-active, var(--run-color-surface-action-primary-active, #1e40af));
+  }
+
+  [part="base"][data-variant="secondary"] {
+    background: var(--run-color-surface-action-secondary, #e2e8f0);
+    color: var(--run-color-text-action-secondary, #334155);
+    border-color: transparent;
+  }
+  [part="base"][data-variant="secondary"]:hover:not([data-disabled]):not([data-loading]) {
+    background: var(--run-color-surface-action-secondary-hover, #cbd5e1);
+  }
+  [part="base"][data-variant="secondary"]:active:not([data-disabled]):not([data-loading]) {
+    background: var(--run-color-surface-action-secondary-active, #94a3b8);
+  }
+
+  [part="base"][data-variant="ghost"] {
+    background: transparent;
+    color: var(--run-color-text-action-ghost, #334155);
+    border-color: transparent;
+  }
+  [part="base"][data-variant="ghost"]:hover:not([data-disabled]):not([data-loading]) {
+    background: var(--run-color-surface-action-ghost-hover, rgba(0,0,0,0.06));
+  }
+  [part="base"][data-variant="ghost"]:active:not([data-disabled]):not([data-loading]) {
+    background: var(--run-color-surface-action-ghost-active, rgba(0,0,0,0.10));
+  }
+
+  [part="base"][data-variant="danger"] {
+    background: var(--run-color-surface-action-danger, #dc2626);
+    color: var(--run-color-text-on-action-danger, #fff);
+    border-color: transparent;
+  }
+  [part="base"][data-variant="danger"]:hover:not([data-disabled]):not([data-loading]) {
+    background: var(--run-color-surface-action-danger-hover, #b91c1c);
+  }
+  [part="base"][data-variant="danger"]:active:not([data-disabled]):not([data-loading]) {
+    background: var(--run-color-surface-action-danger-active, #991b1b);
+  }
+
+  /* \u2500\u2500 Sizes \u2500\u2500 */
+  [part="base"][data-size="sm"] {
+    height: var(--run-size-interactive-height-sm, 32px);
+    font-size: var(--run-font-size-body-sm, 13px);
+    padding-inline: 10px;
+  }
+  [part="base"][data-size="lg"] {
+    height: var(--run-size-interactive-height-lg, 46px);
+    font-size: var(--run-font-size-body-lg, 16px);
+    padding-inline: 20px;
+  }
+
+  /* \u2500\u2500 Disabled \u2500\u2500 */
+  [part="base"][data-disabled] {
+    opacity: var(--run-button-disabled-opacity, var(--run-color-state-disabled-opacity, 0.4));
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* \u2500\u2500 Loading \u2500\u2500 */
+  [part="base"][data-loading] {
+    cursor: wait;
+  }
+  [part="base"][data-loading] [part="label"] {
+    visibility: hidden;
+  }
+  [part="base"][data-loading] [part="icon-start"],
+  [part="base"][data-loading] [part="icon-end"] {
+    visibility: hidden;
+  }
+
+  /* \u2500\u2500 Loader spinner \u2500\u2500 */
+  [part="loader"] {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  [part="base"][data-loading] [part="loader"] {
+    display: flex;
+  }
+  [part="loader"]::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: run-button-spin 0.6s linear infinite;
+  }
+  @keyframes run-button-spin {
+    to { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [part="base"] { transition: none; }
+    [part="loader"]::after { animation: none; border-top-color: currentColor; opacity: 0.5; }
+  }
+
+  /* \u2500\u2500 Position-aware boundary (compound composition) \u2500\u2500 */
+  :host([data-position="end"]) [part="base"] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  /* \u2500\u2500 Composed mode: surrender all boundary to parent (Boundary Ownership Contract v1.0) \u2500\u2500 */
+  /* Parent sets data-ys-composed on claimed children. Child stops consuming boundary tokens. */
+  /* Focus ring (box-shadow on :focus-visible) is NOT boundary \u2014 it stays. */
+  :host([data-ys-composed]) [part="base"] {
+    border-radius: 0;
+    border-color: transparent;
+  }
+
+  /* \u2500\u2500 Slots \u2500\u2500 */
+  [part="icon-start"],
+  [part="icon-end"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    font-size: 1.1em;
+  }
+  [part="label"] {
+    flex: 1 1 auto;
+  }
+`;function M(a){let t=a.variant||"primary",r=a.size||"medium",e=a.disabled?"data-disabled":"",i=a.loading?"data-loading":"";a.shadowRoot.innerHTML=`
+    <button
+      part="base"
+      data-variant="${t}"
+      data-size="${r}"
+      ${e}
+      ${i}
+      type="${a.type||"button"}"
+    >
+      <span part="icon-start"><slot name="icon-start"></slot></span>
+      <span part="label"><slot></slot></span>
+      <span part="icon-end"><slot name="icon-end"></slot></span>
+      <span part="loader" aria-hidden="true"></span>
+    </button>
+  `}var E=_({styles:U,render:M}),{styles:N,render:q}=E;var b=class extends k(h){static defaultSkin=f;static skinLoaders={};#t=!1;#e=!1;#r=!1;#i="button";#n=null;#s="";#a="primary";#o="md";#d=null;_internals=null;#c=t=>{if(this.#t||this.#e||this.#r){t.preventDefault(),t.stopImmediatePropagation();return}this.#l(t)};#u=t=>{this.#t||this.#e||this.#r||(t.key==="Enter"?(t.preventDefault(),this.#l(t)):t.key===" "&&t.preventDefault())};#h=t=>{this.#t||this.#e||this.#r||t.key===" "&&this.#l(t)};static formAssociated=!0;static componentName="Button";static version="1.0.0";static category="form";static layer="atomic";static parts=["base","label","loader","icon-start","icon-end"];static slots=[{name:"",description:"Button label text"},{name:"icon-start",description:"Leading icon"},{name:"icon-end",description:"Trailing icon"}];static events=[{name:"run-click",description:"Fired when button is activated via pointer or keyboard"}];static get observedAttributes(){return["disabled","loading","type","name","value","variant","size","skin","aria-label","aria-labelledby"]}constructor(){super(),this._internals=this.attachInternals()}_initializeShadowDOM(){this.shadowRoot||this.attachShadow({mode:"open",delegatesFocus:!0})}connectedCallback(){super.connectedCallback?.(),this.addEventListener("click",this.#c),this.addEventListener("keydown",this.#u),this.addEventListener("keyup",this.#h)}disconnectedCallback(){super.disconnectedCallback?.(),this.removeEventListener("click",this.#c),this.removeEventListener("keydown",this.#u),this.removeEventListener("keyup",this.#h)}attributeChangedCallback(t,r,e){if(r!==e)switch(t){case"disabled":this.disabled=e!==null;break;case"loading":this.loading=e!==null;break;case"type":this.type=e;break;case"name":this.name=e;break;case"value":this.value=e;break;case"variant":this.variant=e;break;case"size":this.size=e;break;case"skin":this.skin=e;break;case"aria-label":case"aria-labelledby":this.requestUpdate();break}}formResetCallback(){this.disabled=!1,this.loading=!1,this.value=""}formDisabledCallback(t){this.#r=!!t,this.requestUpdate()}firstUpdated(t){super.firstUpdated?.(t),this._internals.setValidity({})}get disabled(){return this.#t}set disabled(t){let r=!!t;this.#t!==r&&(this.#t=r,this.toggleAttribute("disabled",r),this.requestUpdate())}get loading(){return this.#e}set loading(t){let r=!!t;this.#e!==r&&(this.#e=r,this.toggleAttribute("loading",r),this.requestUpdate())}get type(){return this.#i}set type(t){let r=["button","submit","reset"],e=t==null?"":String(t).trim(),i=r.includes(e)?e:"button";this.#i!==i&&(this.#i=i,this.setAttribute("type",i),this.requestUpdate())}get name(){return this.#n}set name(t){let e=(t==null?"":String(t).trim())||null;this.#n!==e&&(this.#n=e,e?this.setAttribute("name",e):this.removeAttribute("name"),this.#p(),this.requestUpdate())}get value(){return this.#s}set value(t){let r=t==null?"":String(t);this.#s!==r&&(this.#s=r,r?this.setAttribute("value",r):this.removeAttribute("value"),this.#p(),this.requestUpdate())}get variant(){return this.#a}set variant(t){let r=["primary","secondary","ghost","danger"],e=t==null?"":String(t).trim(),i=r.includes(e)?e:"primary";this.#a!==i&&(this.#a=i,this.setAttribute("variant",i),this.requestUpdate())}get size(){return this.#o}set size(t){let r=["sm","md","lg"],e=t==null?"":String(t).trim(),i=r.includes(e)?e:"md";this.#o!==i&&(this.#o=i,this.setAttribute("size",i),this.requestUpdate())}get skin(){return this.#d}set skin(t){let e=(t==null?"":String(t).trim())||null;this.#d!==e&&(this.#d=e,e?this.setAttribute("skin",e):this.removeAttribute("skin"),this.requestUpdate())}get ariaLabel(){return this.getAttribute("aria-label")}get ariaLabelledby(){return this.getAttribute("aria-labelledby")}updated(t){super.updated?.(t);let r=this.shadowRoot.querySelector('[part="base"]');if(r){this.#t||this.#r?r.setAttribute("aria-disabled","true"):r.removeAttribute("aria-disabled"),this.#e?r.setAttribute("aria-busy","true"):r.removeAttribute("aria-busy");let n=this.getAttribute("aria-label"),s=this.getAttribute("aria-labelledby");if(n)r.setAttribute("aria-label",n),r.removeAttribute("aria-labelledby");else if(s)r.setAttribute("aria-labelledby",s),r.removeAttribute("aria-label");else{let o=this.textContent?.trim();o?r.setAttribute("aria-label",o):r.removeAttribute("aria-label"),r.removeAttribute("aria-labelledby")}}let e=this._internals?.states;e&&(this.#t||this.#r?e.add("--disabled"):e.delete("--disabled"),this.#e?e.add("--loading"):e.delete("--loading")),this.renderBoundary()}renderBoundary(){return this.shadowRoot?.querySelector('[part="base"]')??null}#p(){this.#n?this._internals.setFormValue(this.#s):this._internals.setFormValue(null)}#f(t){return this.dispatchEvent(new CustomEvent("run-click",{bubbles:!0,composed:!0,cancelable:!0,detail:{originalEvent:t}}))}#l(t){this.#f(t)&&(this.#i==="submit"&&this._internals.form?this._internals.form.requestSubmit():this.#i==="reset"&&this._internals.form&&this._internals.form.reset())}};customElements.define("run-button",b);var I=Object.freeze(["button","submit","reset"]),Q=Object.freeze(["primary","secondary","ghost","danger"]),H=Object.freeze(["sm","md","lg"]);export{H as BUTTON_SIZES,I as BUTTON_TYPES,Q as BUTTON_VARIANTS};
+  </script>
+</head>
+<body>
+  <h1>RunsNative · Button</h1>
+
+  <div class="section">
+    <div class="section-label">Variants</div>
+    <div class="row">
+      <run-button variant="primary">Primary</run-button>
+      <run-button variant="secondary">Secondary</run-button>
+      <run-button variant="ghost">Ghost</run-button>
+      <run-button variant="danger">Danger</run-button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Sizes</div>
+    <div class="row">
+      <run-button variant="primary" size="sm">Small</run-button>
+      <run-button variant="primary" size="md">Medium</run-button>
+      <run-button variant="primary" size="lg">Large</run-button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">States</div>
+    <div class="row">
+      <run-button variant="primary" disabled>Disabled</run-button>
+      <run-button variant="secondary" disabled>Disabled</run-button>
+      <run-button variant="primary" loading>Loading</run-button>
+    </div>
+  </div>
+
+</body>
+</html>

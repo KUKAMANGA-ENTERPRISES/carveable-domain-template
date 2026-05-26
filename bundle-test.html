@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bundle test</title>
+  <link rel="stylesheet" href="./node_modules/@runsnative/brand-default/tokens.css">
+  <script type="module" src="./run-button.bundle.js"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: var(--run-color-surface-page, #f8fafc); }
+    .row { display: flex; gap: 10px; align-items: center; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <run-button variant="primary">Primary</run-button>
+    <run-button variant="secondary">Secondary</run-button>
+    <run-button variant="ghost">Ghost</run-button>
+    <run-button variant="danger">Danger</run-button>
+  </div>
+  <div class="row">
+    <run-button size="sm">Small</run-button>
+    <run-button size="md">Medium</run-button>
+    <run-button size="lg">Large</run-button>
+  </div>
+  <div class="row">
+    <run-button disabled>Disabled</run-button>
+    <run-button loading>Loading</run-button>
+  </div>
+</body>
+</html>
