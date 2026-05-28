@@ -12,50 +12,93 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto+Mono&display=swap">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "runsnative":            "./node_modules/runsnative/dist/index.js",
+      "runsnative/text":       "./node_modules/runsnative/dist/text.js",
+      "runsnative/link":       "./node_modules/runsnative/dist/link.js",
+      "runsnative/stack":      "./node_modules/runsnative/dist/stack.js"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import 'runsnative/text';
+    import 'runsnative/link';
+    import 'runsnative/stack';
+  </script>
 </head>
 <body>
   <main class="page">
-    <header class="page-header">
-      <h1>hello-world</h1>
-      <p class="lede">
-        The proving instance for the carveable-domain template. Every layer
-        (presentation, interface, behavior, services, adapters, state,
-        knowledge, ops) is filled with at least one working artifact. The
-        <code>master</code> branch is the empty mold; this branch fills it in.
-      </p>
-    </header>
+    <run-stack direction="vertical" gap="xl">
 
-    <section class="block">
-      <h2 class="eyebrow">Demos</h2>
-      <ul class="demo-list">
-        <li><a class="demo-card" href="./presentation/pages/hello.html">
-          <span class="demo-title">Hello, world</span>
-          <span class="demo-desc">Live fetch against <code>/api/hello</code> — proves the full layer chain.</span>
-        </a></li>
-        <li><a class="demo-card" href="./presentation/pages/variants.html">
-          <span class="demo-title">RunsNative · Variants</span>
-          <span class="demo-desc">Component variants via importmap. The dogfood demo for the framework-web docs page.</span>
-        </a></li>
-        <li><a class="demo-card" href="./presentation/pages/bundle-test.html">
-          <span class="demo-title">Bundle test (no importmap)</span>
-          <span class="demo-desc">Same components, served from a pre-built vendored bundle.</span>
-        </a></li>
-        <li><a class="demo-card" href="./behavior/surfaces/hello-surface.html">
-          <span class="demo-title">hello-agent surface</span>
-          <span class="demo-desc">Interactive form — the "door" an agent knocks on to invoke the same service.</span>
-        </a></li>
-      </ul>
-    </section>
+      <run-stack direction="vertical" gap="sm">
+        <run-text variant="display" size="4xl" weight="bold">hello-world</run-text>
+        <run-text variant="body" size="lg" color="secondary">
+          The proving instance for the carveable-domain template. Every layer
+          (presentation, interface, behavior, services, adapters, state,
+          knowledge, ops) is filled with at least one working artifact. The
+          <run-text variant="code">master</run-text>
+          branch is the empty mold; this branch fills it in.
+        </run-text>
+      </run-stack>
 
-    <section class="block">
-      <h2 class="eyebrow">Repository conventions</h2>
-      <nav class="convention-links" aria-label="Repository conventions">
-        <a href="./README.md">README.md</a>
-        <a href="./AGENTS.md">AGENTS.md</a>
-        <a href="./TEMPLATE.md">TEMPLATE.md</a>
-        <a href="./domain.yaml">domain.yaml</a>
-      </nav>
-    </section>
+      <run-stack direction="vertical" gap="md">
+        <run-text variant="label" size="xs">Demos</run-text>
+        <run-stack direction="vertical" gap="sm">
+
+          <run-link href="./presentation/pages/hello.html" class="demo-card">
+            <run-stack direction="vertical" gap="xs">
+              <run-text variant="heading" size="md" weight="semibold">Hello, world</run-text>
+              <run-text variant="body" size="sm" color="secondary">
+                Live fetch against <run-text variant="code">/api/hello</run-text> — proves the full layer chain.
+              </run-text>
+            </run-stack>
+          </run-link>
+
+          <run-link href="./presentation/pages/variants.html" class="demo-card">
+            <run-stack direction="vertical" gap="xs">
+              <run-text variant="heading" size="md" weight="semibold">RunsNative · Variants</run-text>
+              <run-text variant="body" size="sm" color="secondary">
+                Component variants via importmap. The dogfood demo for the framework-web docs page.
+              </run-text>
+            </run-stack>
+          </run-link>
+
+          <run-link href="./presentation/pages/bundle-test.html" class="demo-card">
+            <run-stack direction="vertical" gap="xs">
+              <run-text variant="heading" size="md" weight="semibold">Bundle test (no importmap)</run-text>
+              <run-text variant="body" size="sm" color="secondary">
+                Same components, served from a pre-built vendored bundle.
+              </run-text>
+            </run-stack>
+          </run-link>
+
+          <run-link href="./behavior/surfaces/hello-surface.html" class="demo-card">
+            <run-stack direction="vertical" gap="xs">
+              <run-text variant="heading" size="md" weight="semibold">hello-agent surface</run-text>
+              <run-text variant="body" size="sm" color="secondary">
+                Interactive form — the "door" an agent knocks on to invoke the same service.
+              </run-text>
+            </run-stack>
+          </run-link>
+
+        </run-stack>
+      </run-stack>
+
+      <run-stack direction="vertical" gap="sm">
+        <run-text variant="label" size="xs">Repository conventions</run-text>
+        <run-stack direction="horizontal" gap="lg" wrap>
+          <run-link href="./README.md">README.md</run-link>
+          <run-link href="./AGENTS.md">AGENTS.md</run-link>
+          <run-link href="./TEMPLATE.md">TEMPLATE.md</run-link>
+          <run-link href="./domain.yaml">domain.yaml</run-link>
+        </run-stack>
+      </run-stack>
+
+    </run-stack>
   </main>
 </body>
 </html>

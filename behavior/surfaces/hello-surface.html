@@ -17,6 +17,9 @@
   {
     "imports": {
       "runsnative":            "../../node_modules/runsnative/dist/index.js",
+      "runsnative/text":       "../../node_modules/runsnative/dist/text.js",
+      "runsnative/link":       "../../node_modules/runsnative/dist/link.js",
+      "runsnative/stack":      "../../node_modules/runsnative/dist/stack.js",
       "runsnative/button":     "../../node_modules/runsnative/dist/button.js",
       "runsnative/text-field": "../../node_modules/runsnative/dist/text-field.js",
       "runsnative/code-block": "../../node_modules/runsnative/dist/code-block.js"
@@ -25,6 +28,9 @@
   </script>
 
   <script type="module">
+    import 'runsnative/text';
+    import 'runsnative/link';
+    import 'runsnative/stack';
     import 'runsnative/button';
     import 'runsnative/text-field';
     import 'runsnative/code-block';
@@ -32,30 +38,38 @@
 </head>
 <body>
   <main class="page">
-    <nav class="crumbs"><a href="../../">← hello-world</a></nav>
+    <run-stack direction="vertical" gap="xl">
 
-    <header class="page-header">
-      <h1>hello-agent surface</h1>
-      <p class="lede">
-        This is an <em>agent surface</em> — the "door" an agent knocks on to
-        interact with this domain. Surfaces are distinct from
-        <code>interface/api/</code> (which is for system-to-system) and
-        <code>presentation/</code> (which is user-facing).
-      </p>
-    </header>
+      <run-link href="../../">← hello-world</run-link>
 
-    <section class="block">
-      <h2 class="eyebrow">Send greeting</h2>
-      <form id="greet-form" class="form-stack">
-        <run-text-field id="name-input" name="name" value="agent" label="Name" required></run-text-field>
-        <run-button id="submit-btn" type="submit" variant="primary">Send</run-button>
-      </form>
-    </section>
+      <run-stack direction="vertical" gap="sm">
+        <run-text variant="display" size="4xl" weight="bold">hello-agent surface</run-text>
+        <run-text variant="body" size="lg" color="secondary">
+          This is an agent surface — the "door" an agent knocks on to interact
+          with this domain. Surfaces are distinct from
+          <run-text variant="code">interface/api/</run-text>
+          (which is for system-to-system) and
+          <run-text variant="code">presentation/</run-text>
+          (which is user-facing).
+        </run-text>
+      </run-stack>
 
-    <section class="block">
-      <h2 class="eyebrow">Response</h2>
-      <run-code-block id="out" language="json"></run-code-block>
-    </section>
+      <run-stack direction="vertical" gap="sm">
+        <run-text variant="label" size="xs">Send greeting</run-text>
+        <form id="greet-form">
+          <run-stack direction="vertical" gap="md">
+            <run-text-field id="name-input" name="name" value="agent" label="Name" required></run-text-field>
+            <run-button id="submit-btn" type="submit" variant="primary">Send</run-button>
+          </run-stack>
+        </form>
+      </run-stack>
+
+      <run-stack direction="vertical" gap="sm">
+        <run-text variant="label" size="xs">Response</run-text>
+        <run-code-block id="out" language="json"></run-code-block>
+      </run-stack>
+
+    </run-stack>
   </main>
 
   <script type="module">
