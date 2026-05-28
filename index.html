@@ -3,100 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RunsNative · Playpen</title>
-
-  <!-- Brand tokens — swap this one line to retheme everything -->
-  <link rel="stylesheet" href="./node_modules/@runsnative/brand-default/tokens.css">
-
-  <!-- Import map — resolves bare runsnative specifiers to the installed package -->
-  <script type="importmap">
-  {
-    "imports": {
-      "runsnative":         "./node_modules/runsnative/dist/index.js",
-      "runsnative/button":  "./node_modules/runsnative/dist/button.js",
-      "runsnative/select":  "./node_modules/runsnative/dist/select.js",
-      "runsnative/text-field": "./node_modules/runsnative/dist/text-field.js"
-    }
-  }
-  </script>
-
-  <!-- Register components — exactly as the docs show -->
-  <script type="module">
-    import 'runsnative/button';
-  </script>
-
+  <title>Carveable-Domain Template</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-
     body {
       font-family: system-ui, -apple-system, sans-serif;
-      font-size: 14px;
-      line-height: 1.5;
+      max-width: 42rem;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      line-height: 1.6;
       color: #1e293b;
-      background: var(--run-color-surface-page, #f8fafc);
-      padding: 2.5rem;
-      margin: 0;
     }
-
-    h1 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin: 0 0 2rem;
-      color: #0f172a;
-    }
-
-    .section {
-      margin-bottom: 2rem;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #94a3b8;
-      margin-bottom: 0.75rem;
-    }
-
-    .row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .lede { color: #64748b; margin-top: 0; }
+    code { background: #f1f5f9; padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.9em; }
+    .note {
+      background: #fef3c7;
+      border-left: 3px solid #f59e0b;
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      font-size: 0.95em;
     }
   </style>
 </head>
 <body>
+  <h1>Carveable-Domain Template</h1>
+  <p class="lede">This is the empty mold. There's nothing to look at here.</p>
 
-  <h1>RunsNative · Playpen</h1>
-
-  <div class="section">
-    <div class="section-label">Variants</div>
-    <div class="row">
-      <run-button variant="primary">Primary</run-button>
-      <run-button variant="secondary">Secondary</run-button>
-      <run-button variant="ghost">Ghost</run-button>
-      <run-button variant="danger">Danger</run-button>
-    </div>
+  <div class="note">
+    <strong>You're on the template branch.</strong> Working code lives on
+    <code>example/&lt;name&gt;</code> branches. See
+    <code>example/hello-world</code> for the proving instance.
   </div>
 
-  <div class="section">
-    <div class="section-label">Sizes</div>
-    <div class="row">
-      <run-button variant="primary" size="sm">Small</run-button>
-      <run-button variant="primary" size="md">Medium</run-button>
-      <run-button variant="primary" size="lg">Large</run-button>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label">States</div>
-    <div class="row">
-      <run-button variant="primary" disabled>Disabled</run-button>
-      <run-button variant="secondary" disabled>Disabled</run-button>
-      <run-button variant="primary" loading>Loading</run-button>
-    </div>
-  </div>
-
+  <p>To instantiate this template for your own domain, read <a href="./TEMPLATE.md">TEMPLATE.md</a>.</p>
+  <p>For the architecture overview, read <a href="./README.md">README.md</a> or <a href="./AGENTS.md">AGENTS.md</a>.</p>
 </body>
 </html>

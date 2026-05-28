@@ -1,11 +1,4 @@
 {
-  "mcpServers": {
-    "runsnative": {
-      "command": "node",
-      "args": ["C:/_DEV/KUKAMANGA/runsnative/packages/mcp-server/dist/index.js"],
-      "env": {
-        "RUNSNATIVE_CONTENT_ROOT": "C:/_DEV/KUKAMANGA/runsnative/content"
-      }
-    }
-  }
+  "_note": "Wire MCP servers your domain depends on. Paths MUST be relative or node_modules-resolvable. Absolute paths into sibling repos (e.g. 'C:/_DEV/...') are a carveability violation — they make the domain non-portable.",
+  "mcpServers": {}
 }

@@ -1,0 +1,37 @@
+# Domain Manifest
+#
+# This file declares the domain's identity, what it exposes, and what it
+# depends on. Fill it in when instantiating this template.
+#
+# A `tools/check-carveability.js` script (to be written by your domain) can
+# verify the claims here: every entry under `depends_on.services` must have a
+# matching `adapters/<name>/` folder, every `exports.contracts` path must
+# exist, etc.
+
+domain: ""              # e.g. "hello-world", "harlow-pets", "publishing"
+owner_entity: ""        # e.g. "runsnative", "mukadra", "himitsu-bako", or a new customer entity name
+version: "0.0.0"
+
+exports:
+  contracts: []         # paths to interface/contracts/*.openapi.yaml or *.schema.json
+  events: []            # event payload schemas this domain emits
+  surfaces: []          # agent-facing surface paths (behavior/surfaces/*)
+
+depends_on:
+  runtime: []           # npm packages (e.g. "runsnative", "@mukadra/engine-client")
+  services: []          # external services — each MUST have a matching adapters/<name>/
+  mcp_servers: []       # MCP servers wired in .mcp.json (must match keys there)
+
+slo:
+  availability: ""      # e.g. "99.9%"
+  rpo: ""               # recovery point objective
+  rto: ""               # recovery time objective
+
+carveability:
+  # When this domain is handed off, the buyer should be able to:
+  # - clone the repo
+  # - npm install
+  # - run `bash ops/health/check.sh` and see all green
+  # - replace any adapter under adapters/ with their own implementation
+  # If any of these break, the domain is not carveable.
+  verified_at: ""       # ISO date of last carveability audit

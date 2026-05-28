@@ -1,8 +1,11 @@
 {
-  "name": "runsnative-playpen",
-  "version": "1.0.0",
+  "name": "carveable-domain-template",
+  "version": "0.1.0",
+  "description": "Template for a self-contained Kukamanga-style domain. Master = mold; example/<name> branches = instances.",
   "type": "module",
-  "dependencies": {
-    "runsnative": "file:../../runsnative/releases/runsnative-0.2.0.tgz"
+  "private": true,
+  "scripts": {
+    "health": "bash ops/health/check.sh",
+    "env-check": "node ops/env-check.js"
   }
 }
