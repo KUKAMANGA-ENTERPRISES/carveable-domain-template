@@ -1,5 +1,8 @@
 {
   "name": "runsnative-playpen",
   "version": "1.0.0",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "runsnative": "file:../../runsnative/releases/runsnative-0.2.0.tgz"
+  }
 }

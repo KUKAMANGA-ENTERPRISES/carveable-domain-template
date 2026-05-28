@@ -8,18 +8,21 @@
   <!-- Brand tokens — swap this one line to retheme everything -->
   <link rel="stylesheet" href="./node_modules/@runsnative/brand-default/tokens.css">
 
-  <!-- Import map — resolves bare @runsnative/* specifiers to local files -->
+  <!-- Import map — resolves bare runsnative specifiers to the installed package -->
   <script type="importmap">
   {
     "imports": {
-      "@runsnative/button": "./node_modules/@runsnative/components/components/button/run-button.js"
+      "runsnative":         "./node_modules/runsnative/dist/index.js",
+      "runsnative/button":  "./node_modules/runsnative/dist/button.js",
+      "runsnative/select":  "./node_modules/runsnative/dist/select.js",
+      "runsnative/text-field": "./node_modules/runsnative/dist/text-field.js"
     }
   }
   </script>
 
-  <!-- Register components -->
+  <!-- Register components — exactly as the docs show -->
   <script type="module">
-    import '@runsnative/button';
+    import 'runsnative/button';
   </script>
 
   <style>
