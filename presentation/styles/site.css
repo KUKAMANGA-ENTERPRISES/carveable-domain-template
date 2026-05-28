@@ -20,6 +20,35 @@ body {
   background: var(--run-color-surface-default, #f8fafc);
 }
 
+/* ── run-text size escape hatch ────────────────────────────────────────────
+ *
+ * <run-text> caps the `size` attribute at xl (its VALID_SIZES enum), so
+ * sizes 2xl/3xl/4xl/5xl/6xl silently fall back to 'md' — and 'md' maps to
+ * --run-font-size-md, which smoke-professional does NOT ship (it uses
+ * --run-font-size-base instead). Net effect: any heading attempt above
+ * 'xl' renders at an undefined font-size token. The skin reads
+ *   font-size: var(--run-text-size, <sizeTokenMap[size]>)
+ * so setting --run-text-size on the host overrides the size attr entirely.
+ * Brand still drives the value via tokens; we just bypass the enum gate.
+ */
+
+run-text.size-2xl { --run-text-size: var(--run-font-size-2xl); }
+run-text.size-3xl { --run-text-size: var(--run-font-size-3xl); }
+run-text.size-4xl { --run-text-size: var(--run-font-size-4xl); }
+run-text.size-5xl { --run-text-size: var(--run-font-size-5xl); }
+run-text.size-6xl { --run-text-size: var(--run-font-size-6xl); }
+
+/* Display variant ships with a tight heading line-height in the skin only
+ * when variant === 'heading'; for variant='display' the skin uses body
+ * line-height, which reads loose at hero sizes. Override via the same
+ * --run-text-line-height escape hatch the skin honors. */
+run-text.size-3xl,
+run-text.size-4xl,
+run-text.size-5xl,
+run-text.size-6xl {
+  --run-text-line-height: var(--run-font-semantic-line-height-heading, 1.15);
+}
+
 /* ── Page wrapper ──────────────────────────────────────────────────────── */
 
 main.page {
