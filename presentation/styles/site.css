@@ -9,20 +9,54 @@
 
 body {
   font-family: var(--run-font-family-body, system-ui, -apple-system, sans-serif);
-  font-size: var(--run-font-size-sm, 14px);
+  font-size: var(--run-font-size-base, 1rem);
   line-height: var(--run-line-height-normal, 1.5);
   color: var(--run-color-text-primary, #1e293b);
   background: var(--run-color-surface-default, #f8fafc);
-  padding: 2.5rem;
+  padding: 0;
   margin: 0;
 }
 
-h1 {
-  font-family: var(--run-font-family-heading, inherit);
-  font-size: var(--run-font-size-lg, 1.125rem);
-  font-weight: var(--run-font-weight-semibold, 600);
-  margin: 0 0 2rem;
-  color: var(--run-color-text-primary, #0f172a);
+/* Component-page wrapper used by component-based pages (landing, hello, agent surface).
+ * Constrains width and provides outer breathing room. */
+main.page {
+  display: block;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* Demo-card chrome — used by run-box elements on the landing page. */
+.demo-card {
+  display: block;
+  background: var(--run-color-surface-raised, #fff);
+  border: 1px solid var(--run-color-border-default, #e2e8f0);
+  border-radius: var(--run-radius-lg, 6px);
+  padding: 1rem 1.25rem;
+}
+
+/* Inline-code styling for prose <code> elements. */
+code {
+  font-family: var(--run-font-family-mono, ui-monospace, monospace);
+  font-size: 0.9em;
+  background: var(--run-color-surface-subtle, #f1f5f9);
+  padding: 0.1em 0.35em;
+  border-radius: var(--run-radius-sm, 3px);
+}
+
+/* ── Utility classes used by variants.html and bundle-test.html ───────────
+ *
+ * These pages predate the component-based rewrite and use plain HTML for
+ * layout chrome around <run-button>. Kept here so those demos keep working
+ * unchanged. New pages should prefer <run-stack> / <run-text variant="label">
+ * instead.
+ */
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .section { margin-bottom: 2rem; }
@@ -36,13 +70,6 @@ h1 {
   margin-bottom: 0.75rem;
 }
 
-.row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
 .crumbs {
   font-size: var(--run-font-size-xs, 12px);
   color: var(--run-color-text-tertiary, #94a3b8);
@@ -53,4 +80,19 @@ h1 {
   color: inherit;
   text-decoration: none;
   border-bottom: 1px dotted currentColor;
+}
+
+/* Variants.html and bundle-test.html style their content directly on body
+ * (padding 2.5rem). Restore that for those legacy pages by NOT applying
+ * main.page wrapper to them — they don't have <main class="page">. */
+body:has(.section) {
+  padding: 2.5rem;
+}
+
+body:has(.section) > h1 {
+  font-family: var(--run-font-family-heading, inherit);
+  font-size: var(--run-font-size-lg, 1.125rem);
+  font-weight: var(--run-font-weight-semibold, 600);
+  margin: 0 0 2rem;
+  color: var(--run-color-text-primary, #0f172a);
 }

@@ -1,35 +1,67 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-run-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
   <title>Hello World · Page</title>
+
   <link rel="stylesheet" href="../styles/tokens.css">
   <link rel="stylesheet" href="../styles/site.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto+Mono&display=swap">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "runsnative":            "../../node_modules/runsnative/dist/index.js",
+      "runsnative/text":       "../../node_modules/runsnative/dist/text.js",
+      "runsnative/link":       "../../node_modules/runsnative/dist/link.js",
+      "runsnative/stack":      "../../node_modules/runsnative/dist/stack.js",
+      "runsnative/code-block": "../../node_modules/runsnative/dist/code-block.js"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import 'runsnative/text';
+    import 'runsnative/link';
+    import 'runsnative/stack';
+    import 'runsnative/code-block';
+  </script>
 </head>
 <body>
-  <div class="crumbs"><a href="../../">← hello-world</a></div>
-  <h1>Hello, world</h1>
+  <main class="page">
+    <run-stack direction="vertical" gap="lg">
 
-  <p>
-    This page exercises the full layer chain. It fetches
-    <code>/api/hello</code> on load — that request traverses
-    <strong>presentation → api → service → adapter</strong>.
-  </p>
+      <run-link href="../../">← hello-world</run-link>
 
-  <div class="section">
-    <div class="section-label">Live API call</div>
-    <pre id="out" style="background:var(--run-color-surface-subtle,#f1f5f9);padding:0.75rem;border-radius:var(--run-radius-md,4px);font-family:var(--run-font-family-mono,ui-monospace,monospace);">loading…</pre>
-  </div>
+      <run-text variant="display" size="md">Hello, world</run-text>
 
-  <div class="section">
-    <div class="section-label">Verifying the trace</div>
-    <p style="font-size:0.95em;">
-      The <code>source</code> field must equal <code>"echo"</code>. If it does,
-      the request actually reached the adapter layer. If it's missing, the
-      route short-circuited.
-    </p>
-  </div>
+      <run-text variant="body">
+        This page exercises the full layer chain. It fetches
+        <code>/api/hello</code> on load — that request traverses
+        <strong>presentation → api → service → adapter</strong>.
+      </run-text>
+
+      <run-stack direction="vertical" gap="sm">
+        <run-text variant="label" size="xs">Live API call</run-text>
+        <run-code-block id="out" language="json">loading…</run-code-block>
+      </run-stack>
+
+      <run-stack direction="vertical" gap="sm">
+        <run-text variant="label" size="xs">Verifying the trace</run-text>
+        <run-text variant="body" size="sm" color="secondary">
+          The <code>source</code> field must equal <code>"echo"</code>. If it
+          does, the request actually reached the adapter layer. If it's missing,
+          the route short-circuited.
+        </run-text>
+      </run-stack>
+
+    </run-stack>
+  </main>
 
   <script type="module">
     const out = document.querySelector("#out");

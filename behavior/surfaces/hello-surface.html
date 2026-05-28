@@ -1,37 +1,83 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-run-theme="light">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
   <title>hello-agent surface</title>
+
   <link rel="stylesheet" href="../../presentation/styles/tokens.css">
   <link rel="stylesheet" href="../../presentation/styles/site.css">
-</head>
-<body>
-  <div class="crumbs"><a href="../../">← hello-world</a></div>
-  <h1>hello-agent surface</h1>
 
-  <p>
-    This is an <em>agent surface</em> — the "door" an agent knocks on to interact
-    with this domain. Surfaces are distinct from <code>interface/api/</code>
-    (which is for system-to-system) and <code>presentation/</code> (which is
-    user-facing).
-  </p>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto+Mono&display=swap">
 
-  <div class="section">
-    <div class="section-label">Send greeting</div>
-    <form id="greet-form">
-      <label>Name <input name="name" value="agent" required></label>
-      <button type="submit">Send</button>
-    </form>
-    <pre id="out" style="margin-top:1rem;background:var(--run-color-surface-subtle,#f1f5f9);padding:0.75rem;border-radius:var(--run-radius-md,4px);font-family:var(--run-font-family-mono,ui-monospace,monospace);"></pre>
-  </div>
+  <script type="importmap">
+  {
+    "imports": {
+      "runsnative":            "../../node_modules/runsnative/dist/index.js",
+      "runsnative/text":       "../../node_modules/runsnative/dist/text.js",
+      "runsnative/link":       "../../node_modules/runsnative/dist/link.js",
+      "runsnative/stack":      "../../node_modules/runsnative/dist/stack.js",
+      "runsnative/button":     "../../node_modules/runsnative/dist/button.js",
+      "runsnative/input":      "../../node_modules/runsnative/dist/input.js",
+      "runsnative/code-block": "../../node_modules/runsnative/dist/code-block.js"
+    }
+  }
+  </script>
 
   <script type="module">
-    const form = document.querySelector("#greet-form");
-    const out  = document.querySelector("#out");
+    import 'runsnative/text';
+    import 'runsnative/link';
+    import 'runsnative/stack';
+    import 'runsnative/button';
+    import 'runsnative/input';
+    import 'runsnative/code-block';
+  </script>
+</head>
+<body>
+  <main class="page">
+    <run-stack direction="vertical" gap="lg">
+
+      <run-link href="../../">← hello-world</run-link>
+
+      <run-text variant="display" size="md">hello-agent surface</run-text>
+
+      <run-text variant="body">
+        This is an <em>agent surface</em> — the "door" an agent knocks on to
+        interact with this domain. Surfaces are distinct from
+        <code>interface/api/</code> (which is for system-to-system) and
+        <code>presentation/</code> (which is user-facing).
+      </run-text>
+
+      <run-stack direction="vertical" gap="md">
+        <run-text variant="label" size="xs">Send greeting</run-text>
+
+        <form id="greet-form">
+          <run-stack direction="vertical" gap="sm">
+            <run-stack direction="vertical" gap="2xs">
+              <run-text variant="label" size="sm">Name</run-text>
+              <run-input id="name-input" name="name" value="agent" required></run-input>
+            </run-stack>
+            <run-button id="submit-btn" type="submit" variant="primary">Send</run-button>
+          </run-stack>
+        </form>
+
+        <run-code-block id="out" language="json"></run-code-block>
+      </run-stack>
+
+    </run-stack>
+  </main>
+
+  <script type="module">
+    const form  = document.querySelector("#greet-form");
+    const input = document.querySelector("#name-input");
+    const out   = document.querySelector("#out");
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const name = new FormData(form).get("name");
+      const name = input.value || "agent";
       const r = await fetch(`/api/hello?name=${encodeURIComponent(name)}`);
       out.textContent = JSON.stringify(await r.json(), null, 2);
     });

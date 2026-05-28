@@ -1,65 +1,111 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-run-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
   <title>hello-world · carveable-domain instance</title>
+
   <link rel="stylesheet" href="./presentation/styles/tokens.css">
   <link rel="stylesheet" href="./presentation/styles/site.css">
-  <style>
-    .demos { display: grid; gap: 1rem; max-width: 38rem; }
-    .demo {
-      background: var(--run-color-surface-raised, #fff);
-      border: 1px solid var(--run-color-border-default, #e2e8f0);
-      border-radius: var(--run-radius-lg, 6px);
-      padding: 1rem 1.25rem;
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto+Mono&display=swap">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "runsnative":            "./node_modules/runsnative/dist/index.js",
+      "runsnative/text":       "./node_modules/runsnative/dist/text.js",
+      "runsnative/link":       "./node_modules/runsnative/dist/link.js",
+      "runsnative/stack":      "./node_modules/runsnative/dist/stack.js",
+      "runsnative/box":        "./node_modules/runsnative/dist/box.js"
     }
-    .demo h3 { margin: 0 0 0.25rem; font-size: var(--run-font-size-sm, 0.95rem); }
-    .demo p  { margin: 0; font-size: 0.85em; color: var(--run-color-text-secondary, #475569); }
-    .demo a  {
-      text-decoration: none;
-      color: var(--run-color-intent-primary-base, #2563eb);
-      font-weight: var(--run-font-weight-medium, 500);
-    }
-  </style>
+  }
+  </script>
+
+  <script type="module">
+    import 'runsnative/text';
+    import 'runsnative/link';
+    import 'runsnative/stack';
+    import 'runsnative/box';
+  </script>
 </head>
 <body>
-  <h1>hello-world · carveable-domain instance</h1>
-  <p style="max-width:38rem;">
-    This is the <code>example/hello-world</code> branch — the proving instance for
-    the carveable-domain template. Every layer (presentation, interface, behavior,
-    services, adapters, state, knowledge, ops) has at least one working file. The
-    <code>master</code> branch is the empty mold; this branch fills it in.
-  </p>
+  <main class="page">
+    <run-stack direction="vertical" gap="xl">
 
-  <div class="section">
-    <div class="section-label">Demos</div>
-    <div class="demos">
-      <div class="demo">
-        <h3><a href="./presentation/pages/hello.html">Hello, world</a></h3>
-        <p>Live fetch against <code>/api/hello</code> — proves the full layer chain.</p>
-      </div>
-      <div class="demo">
-        <h3><a href="./presentation/pages/variants.html">RunsNative · Variants</a></h3>
-        <p>Component variants via importmap. The dogfood demo for the framework-web docs page.</p>
-      </div>
-      <div class="demo">
-        <h3><a href="./presentation/pages/bundle-test.html">Bundle test (no importmap)</a></h3>
-        <p>Same components, served from a pre-built vendored bundle.</p>
-      </div>
-      <div class="demo">
-        <h3><a href="./behavior/surfaces/hello-surface.html">hello-agent surface</a></h3>
-        <p>Interactive form — the "door" an agent knocks on to invoke the same service.</p>
-      </div>
-    </div>
-  </div>
+      <run-stack direction="vertical" gap="sm">
+        <run-text variant="display" size="lg">hello-world</run-text>
+        <run-text variant="body" color="secondary">
+          The proving instance for the carveable-domain template. Every layer
+          (presentation, interface, behavior, services, adapters, state,
+          knowledge, ops) is filled with at least one working artifact. The
+          <code>master</code> branch is the empty mold; this branch fills it in.
+        </run-text>
+      </run-stack>
 
-  <div class="section">
-    <div class="section-label">Repository conventions</div>
-    <p style="max-width:38rem;font-size:0.9em;">
-      <a href="./README.md">README.md</a> · <a href="./AGENTS.md">AGENTS.md</a> ·
-      <a href="./TEMPLATE.md">TEMPLATE.md</a> · <a href="./domain.yaml">domain.yaml</a>
-    </p>
-  </div>
+      <run-stack direction="vertical" gap="md">
+        <run-text variant="label" size="xs">Demos</run-text>
+
+        <run-box class="demo-card">
+          <run-stack direction="vertical" gap="2xs">
+            <run-link href="./presentation/pages/hello.html">
+              <run-text variant="heading" size="md">Hello, world</run-text>
+            </run-link>
+            <run-text variant="body" size="sm" color="secondary">
+              Live fetch against <code>/api/hello</code> — proves the full layer chain.
+            </run-text>
+          </run-stack>
+        </run-box>
+
+        <run-box class="demo-card">
+          <run-stack direction="vertical" gap="2xs">
+            <run-link href="./presentation/pages/variants.html">
+              <run-text variant="heading" size="md">RunsNative · Variants</run-text>
+            </run-link>
+            <run-text variant="body" size="sm" color="secondary">
+              Component variants via importmap. The dogfood demo for the
+              framework-web docs page.
+            </run-text>
+          </run-stack>
+        </run-box>
+
+        <run-box class="demo-card">
+          <run-stack direction="vertical" gap="2xs">
+            <run-link href="./presentation/pages/bundle-test.html">
+              <run-text variant="heading" size="md">Bundle test (no importmap)</run-text>
+            </run-link>
+            <run-text variant="body" size="sm" color="secondary">
+              Same components, served from a pre-built vendored bundle.
+            </run-text>
+          </run-stack>
+        </run-box>
+
+        <run-box class="demo-card">
+          <run-stack direction="vertical" gap="2xs">
+            <run-link href="./behavior/surfaces/hello-surface.html">
+              <run-text variant="heading" size="md">hello-agent surface</run-text>
+            </run-link>
+            <run-text variant="body" size="sm" color="secondary">
+              Interactive form — the "door" an agent knocks on to invoke the same service.
+            </run-text>
+          </run-stack>
+        </run-box>
+      </run-stack>
+
+      <run-stack direction="vertical" gap="sm">
+        <run-text variant="label" size="xs">Repository conventions</run-text>
+        <run-stack direction="horizontal" gap="md" wrap>
+          <run-link href="./README.md">README.md</run-link>
+          <run-link href="./AGENTS.md">AGENTS.md</run-link>
+          <run-link href="./TEMPLATE.md">TEMPLATE.md</run-link>
+          <run-link href="./domain.yaml">domain.yaml</run-link>
+        </run-stack>
+      </run-stack>
+
+    </run-stack>
+  </main>
 </body>
 </html>
