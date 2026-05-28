@@ -9,14 +9,18 @@
   <style>
     .demos { display: grid; gap: 1rem; max-width: 38rem; }
     .demo {
-      background: var(--run-color-surface-card, #fff);
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
+      background: var(--run-color-surface-raised, #fff);
+      border: 1px solid var(--run-color-border-default, #e2e8f0);
+      border-radius: var(--run-radius-lg, 6px);
       padding: 1rem 1.25rem;
     }
-    .demo h3 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+    .demo h3 { margin: 0 0 0.25rem; font-size: var(--run-font-size-sm, 0.95rem); }
     .demo p  { margin: 0; font-size: 0.85em; color: var(--run-color-text-secondary, #475569); }
-    .demo a  { text-decoration: none; color: var(--run-color-accent, #2563eb); font-weight: 500; }
+    .demo a  {
+      text-decoration: none;
+      color: var(--run-color-intent-primary-base, #2563eb);
+      font-weight: var(--run-font-weight-medium, 500);
+    }
   </style>
 </head>
 <body>
