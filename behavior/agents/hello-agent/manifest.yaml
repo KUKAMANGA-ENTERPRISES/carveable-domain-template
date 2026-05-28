@@ -1,0 +1,28 @@
+# hello-agent — the minimal agent for the hello-world instance.
+#
+# Purpose: prove the behavior layer can compose tools that reach the
+# services + adapters via the same path the API does.
+
+name: hello-agent
+version: 0.1.0
+description: |
+  Says hello when asked. Demonstrates the agent → tool → service →
+  adapter chain end-to-end without HTTP.
+
+skills:
+  - ../../skills/hello-skill
+
+tools:
+  - ../../tools/say-hello.js
+
+surfaces:
+  - ../../surfaces/hello-surface.html
+
+owner_entity: hello-world
+
+# How an executor (Mukadra engine, local runner) would invoke this agent.
+# Stub form — the real shape depends on the runtime.
+entrypoint:
+  on: "intent.greet"
+  call: "tools/say_hello"
+  pass_args: ["name"]

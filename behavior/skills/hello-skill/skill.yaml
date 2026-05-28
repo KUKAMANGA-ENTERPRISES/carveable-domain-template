@@ -1,0 +1,25 @@
+# hello-skill — the reusable capability bundle for greeting.
+#
+# A skill is a prompt + a recipe for using tools/services. Agents compose
+# skills; multiple agents can share the same skill.
+
+name: hello-skill
+version: 0.1.0
+description: |
+  Greet a named recipient. Trivial in content, instructive in shape:
+  shows that a skill references tools by relative path and stays free
+  of business logic (which lives in services/).
+
+trigger:
+  on_intent: ["greet", "say hello", "introduce yourself"]
+
+uses_tools:
+  - say_hello   # → behavior/tools/say-hello.js → services/hello → adapters/echo
+
+prompt: |
+  When asked to greet someone, call the `say_hello` tool with the
+  recipient's name. Return the greeting verbatim.
+
+success_criteria:
+  - "Response contains the recipient's name."
+  - "Response includes a `source` field naming the adapter that produced the prefix."

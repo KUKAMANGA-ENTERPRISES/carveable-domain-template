@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hello World · Bundle test</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/site.css">
+  <!-- Pre-built bundle (the no-importmap path) — registers run-button as a side effect -->
+  <script type="module" src="../vendor/run-button.bundle.js"></script>
+</head>
+<body>
+  <div class="crumbs"><a href="../../">← hello-world</a></div>
+  <h1>Bundle test (no importmap)</h1>
+
+  <div class="section">
+    <div class="section-label">Variants</div>
+    <div class="row">
+      <run-button variant="primary">Primary</run-button>
+      <run-button variant="secondary">Secondary</run-button>
+      <run-button variant="ghost">Ghost</run-button>
+      <run-button variant="danger">Danger</run-button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Sizes</div>
+    <div class="row">
+      <run-button size="sm">Small</run-button>
+      <run-button size="md">Medium</run-button>
+      <run-button size="lg">Large</run-button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">States</div>
+    <div class="row">
+      <run-button disabled>Disabled</run-button>
+      <run-button loading>Loading</run-button>
+    </div>
+  </div>
+</body>
+</html>

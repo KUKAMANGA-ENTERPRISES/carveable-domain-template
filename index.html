@@ -3,39 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Carveable-Domain Template</title>
+  <title>hello-world · carveable-domain instance</title>
+  <link rel="stylesheet" href="./presentation/styles/tokens.css">
+  <link rel="stylesheet" href="./presentation/styles/site.css">
   <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      max-width: 42rem;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
-      line-height: 1.6;
-      color: #1e293b;
+    .demos { display: grid; gap: 1rem; max-width: 38rem; }
+    .demo {
+      background: var(--run-color-surface-card, #fff);
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
     }
-    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
-    .lede { color: #64748b; margin-top: 0; }
-    code { background: #f1f5f9; padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.9em; }
-    .note {
-      background: #fef3c7;
-      border-left: 3px solid #f59e0b;
-      padding: 0.75rem 1rem;
-      margin: 1.5rem 0;
-      font-size: 0.95em;
-    }
+    .demo h3 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+    .demo p  { margin: 0; font-size: 0.85em; color: var(--run-color-text-secondary, #475569); }
+    .demo a  { text-decoration: none; color: var(--run-color-accent, #2563eb); font-weight: 500; }
   </style>
 </head>
 <body>
-  <h1>Carveable-Domain Template</h1>
-  <p class="lede">This is the empty mold. There's nothing to look at here.</p>
+  <h1>hello-world · carveable-domain instance</h1>
+  <p style="max-width:38rem;">
+    This is the <code>example/hello-world</code> branch — the proving instance for
+    the carveable-domain template. Every layer (presentation, interface, behavior,
+    services, adapters, state, knowledge, ops) has at least one working file. The
+    <code>master</code> branch is the empty mold; this branch fills it in.
+  </p>
 
-  <div class="note">
-    <strong>You're on the template branch.</strong> Working code lives on
-    <code>example/&lt;name&gt;</code> branches. See
-    <code>example/hello-world</code> for the proving instance.
+  <div class="section">
+    <div class="section-label">Demos</div>
+    <div class="demos">
+      <div class="demo">
+        <h3><a href="./presentation/pages/hello.html">Hello, world</a></h3>
+        <p>Live fetch against <code>/api/hello</code> — proves the full layer chain.</p>
+      </div>
+      <div class="demo">
+        <h3><a href="./presentation/pages/variants.html">RunsNative · Variants</a></h3>
+        <p>Component variants via importmap. The dogfood demo for the framework-web docs page.</p>
+      </div>
+      <div class="demo">
+        <h3><a href="./presentation/pages/bundle-test.html">Bundle test (no importmap)</a></h3>
+        <p>Same components, served from a pre-built vendored bundle.</p>
+      </div>
+      <div class="demo">
+        <h3><a href="./behavior/surfaces/hello-surface.html">hello-agent surface</a></h3>
+        <p>Interactive form — the "door" an agent knocks on to invoke the same service.</p>
+      </div>
+    </div>
   </div>
 
-  <p>To instantiate this template for your own domain, read <a href="./TEMPLATE.md">TEMPLATE.md</a>.</p>
-  <p>For the architecture overview, read <a href="./README.md">README.md</a> or <a href="./AGENTS.md">AGENTS.md</a>.</p>
+  <div class="section">
+    <div class="section-label">Repository conventions</div>
+    <p style="max-width:38rem;font-size:0.9em;">
+      <a href="./README.md">README.md</a> · <a href="./AGENTS.md">AGENTS.md</a> ·
+      <a href="./TEMPLATE.md">TEMPLATE.md</a> · <a href="./domain.yaml">domain.yaml</a>
+    </p>
+  </div>
 </body>
 </html>

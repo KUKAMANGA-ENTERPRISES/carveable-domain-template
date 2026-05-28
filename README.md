@@ -1,45 +1,65 @@
-# Carveable-Domain Template
+# hello-world · carveable-domain instance
 
-This is a **template** for a self-contained Kukamanga-style domain — a unit of code, contracts, data, and docs that can be owned, operated, and (if needed) handed off to another party without dependencies on sibling repos.
+This is the **proving instance** for the carveable-domain template. Every layer of the template gets exercised here by minimal-but-real code. If this instance runs end-to-end, the template is at least adequate; if any layer can't be filled with something working, the template has a hole.
 
-If you're looking at this on `master`, you're looking at the **mold** — the empty shape. Instances of this template (with real code filled in) live on branches named `example/<name>`.
+> Master branch is the template. This branch (`example/hello-world`) is the material that proves it.
 
-## What's a "carveable domain"?
+## Run
 
-A bounded unit that:
-
-1. **Declares its own contracts** (`interface/contracts/`) — what it exposes to consumers
-2. **Owns its own behavior** (`behavior/`, `services/`) — the logic that fulfills those contracts
-3. **Wraps its own external dependencies** (`adapters/`) — every outside system has an adapter; the rest of the code is integration-agnostic
-4. **Carries its own knowledge** (`knowledge/docs/`) — ADRs, examples, contracts in prose
-5. **Carries its own operations story** (`ops/`) — health checks, deploy manifests, runbooks
-6. **Has no absolute paths into sibling repos** — everything it depends on is either in `node_modules/` or wrapped by an adapter
-
-Pass these and the domain can be carved out and handed over.
-
-## How to use this template
-
-Read [TEMPLATE.md](./TEMPLATE.md) for the step-by-step.
-
-## Repository conventions
-
-- **Master branch = the template (mold).** Empty placeholders, no working code.
-- **`example/<name>` branches = working instances (material).** `example/hello-world` is the proving instance.
-- **`git diff master..example/hello-world` is the contract** — it answers "what does a customer add on top of the template?"
-
-## Layout at a glance
-
-```
-.claude/         Claude Code project config (team-shared)
-presentation/    pages, MFEs, styles, vendored UI bundles
-interface/       api routes + machine/prose contracts (inbound boundary)
-behavior/        agents, skills, tools, events, surfaces (orchestration)
-services/        domain operations (the hexagon's inside)
-adapters/        external system wrappers (outbound boundary)
-state/           data schemas, seed, runtime store, CKO index
-knowledge/       docs (ADRs, examples) + cko.config.yaml
-ops/             health, deploy, runbooks
-tests/           cross-layer integration tests (unit tests are co-located)
+```bash
+npm install            # resolves runsnative from in-repo tarball; no network needed
+npm start              # → http://127.0.0.1:8910/
+npm test               # node's built-in test runner; zero deps
+npm run health         # ops/health/check.sh — exits 0 if all layers respond
 ```
 
-See each layer's own `README.md` for what goes inside.
+## Layout — what's in each layer for this instance
+
+| Layer | What's here |
+|---|---|
+| **presentation** | Landing page (`index.html`), hello page (live API call), RunsNative variants/bundle-test demos, shared site CSS, brand tokens, vendored bundles |
+| **interface** | Zero-dep Node HTTP server + `/api/hello` route; OpenAPI + prose contracts |
+| **behavior** | `hello-agent` composing `hello-skill` + `say_hello` tool; `on-startup` event; agent surface page |
+| **services** | `hello/index.js` — composes adapters/echo to produce a greeting |
+| **adapters** | `echo/index.js` — wraps "greeting prefix source" (an env var) behind a domain-shaped API |
+| **state** | Empty (hello-world is stateless) |
+| **knowledge** | ADR 0001 (why this shape) + walkthrough + cko.config.yaml |
+| **ops** | `health/check.sh` (per-layer probes), `env-check.js` |
+| **tests** | `integration/hello.test.js` — boots the server, hits the API, verifies layer trace |
+
+## The full layer trace
+
+```
+browser → GET /presentation/pages/hello.html
+        → fetch /api/hello?name=world
+        → interface/api/server.js
+        → interface/api/routes/hello.js
+        → services/hello/index.js              ← composes the greeting
+        → adapters/echo/index.js               ← supplies the prefix + source
+       ← { greeting: "Hello, world", source: "echo" }
+```
+
+The `source: "echo"` field is the trace marker. If you see it in the response, the request actually reached the adapter — not a hardcoded short-circuit at the route.
+
+## Carveability properties demonstrated
+
+1. **Zero absolute paths into sibling repos** — all imports are repo-relative or `node_modules/`-resolvable
+2. **Every external dependency has an adapter** — `runsnative` ships in `node_modules/`; `process.env.HELLO_GREETING` is wrapped by `adapters/echo/`
+3. **Brand is domain-owned** — `presentation/styles/tokens.css` is the swap point for retheming
+4. **The HTTP layer is replaceable** — `services/hello/sayHello()` works without the server running
+5. **Zero runtime deps beyond `runsnative`** — the server, tests, env-check, and health probe all use Node built-ins
+
+## What's NOT in this instance
+
+The template has affordances this instance doesn't exercise. They're future-instance work:
+
+- Persistent state (Postgres + LanceDB adapters, schemas, seed)
+- Multi-skill / multi-tool agents
+- CKO surface (the structure is reserved in `state/.cko/` + `knowledge/cko.config.yaml`)
+- A non-runsnative `owner_entity`
+
+See [knowledge/docs/adrs/0001-domain-shape.md](./knowledge/docs/adrs/0001-domain-shape.md) for the rationale.
+
+## Re-rooted to the template
+
+For the template's pitch and instantiation steps, see [TEMPLATE.md](./TEMPLATE.md) on the `master` branch. The diff `git diff master..example/hello-world` shows precisely what an instance adds.

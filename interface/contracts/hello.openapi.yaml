@@ -1,0 +1,49 @@
+openapi: 3.1.0
+info:
+  title: hello-world domain — Hello API
+  version: 0.1.0
+  description: |
+    The minimal contract the hello-world domain promises. Used to verify
+    every layer can be wired end-to-end (page → api → service → adapter).
+
+servers:
+  - url: http://127.0.0.1:8910
+    description: Local hello-world API
+
+paths:
+  /api/hello:
+    get:
+      summary: Return a greeting
+      operationId: getHello
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: false
+          description: Recipient of the greeting. Defaults to "world".
+      responses:
+        "200":
+          description: A greeting payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Greeting"
+
+components:
+  schemas:
+    Greeting:
+      type: object
+      required: [greeting, source]
+      properties:
+        greeting:
+          type: string
+          description: The composed greeting.
+          example: "Hello, world"
+        source:
+          type: string
+          description: |
+            Identifies which adapter produced the greeting prefix. Useful for
+            verifying the request reached the adapter layer rather than being
+            short-circuited at the route.
+          example: "echo"

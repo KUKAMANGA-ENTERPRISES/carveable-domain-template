@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello World · Page</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/site.css">
+</head>
+<body>
+  <div class="crumbs"><a href="../../">← hello-world</a></div>
+  <h1>Hello, world</h1>
+
+  <p>
+    This page exercises the full layer chain. It fetches
+    <code>/api/hello</code> on load — that request traverses
+    <strong>presentation → api → service → adapter</strong>.
+  </p>
+
+  <div class="section">
+    <div class="section-label">Live API call</div>
+    <pre id="out" style="background:#f1f5f9;padding:0.75rem;border-radius:4px;">loading…</pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Verifying the trace</div>
+    <p style="font-size:0.95em;">
+      The <code>source</code> field must equal <code>"echo"</code>. If it does,
+      the request actually reached the adapter layer. If it's missing, the
+      route short-circuited.
+    </p>
+  </div>
+
+  <script type="module">
+    const out = document.querySelector("#out");
+    try {
+      const r = await fetch("/api/hello?name=world");
+      out.textContent = JSON.stringify(await r.json(), null, 2);
+    } catch (e) {
+      out.textContent = `[error] ${e.message}\n\nIs the server running? Try:\n  npm start`;
+    }
+  </script>
+</body>
+</html>

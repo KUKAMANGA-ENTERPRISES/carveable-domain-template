@@ -1,0 +1,21 @@
+/*
+ * Brand tokens for the hello-world instance.
+ *
+ * In the original two-package install, these came from
+ * `@runsnative/brand-default`. The framework-web migration moved RunsNative
+ * to a single `runsnative` package which does NOT ship its own tokens —
+ * the customer (this domain) owns its theme.
+ *
+ * Swap this file to retheme. The component bundle reads CSS variables
+ * with the `--run-color-*` prefix and falls back to sensible defaults
+ * if a variable is missing.
+ */
+
+:root {
+  --run-color-surface-page: #f8fafc;
+  --run-color-surface-card: #ffffff;
+  --run-color-text-primary: #0f172a;
+  --run-color-text-secondary: #475569;
+  --run-color-text-muted: #94a3b8;
+  --run-color-accent: #2563eb;
+}

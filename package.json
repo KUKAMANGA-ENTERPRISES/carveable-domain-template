@@ -1,11 +1,16 @@
 {
-  "name": "carveable-domain-template",
+  "name": "hello-world",
   "version": "0.1.0",
-  "description": "Template for a self-contained Kukamanga-style domain. Master = mold; example/<name> branches = instances.",
+  "description": "Proving instance for the carveable-domain template.",
   "type": "module",
   "private": true,
   "scripts": {
+    "start": "node interface/api/server.js",
+    "test": "node --test \"tests/integration/**/*.test.js\"",
     "health": "bash ops/health/check.sh",
     "env-check": "node ops/env-check.js"
+  },
+  "dependencies": {
+    "runsnative": "file:runsnative-0.2.0.tgz"
   }
 }

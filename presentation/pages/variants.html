@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello World · Variants · RunsNative components</title>
+
+  <!-- Domain-owned brand tokens (swap this file to retheme) -->
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/site.css">
+
+  <!-- Import map — resolves bare runsnative specifiers to the installed package -->
+  <script type="importmap">
+  {
+    "imports": {
+      "runsnative":         "../../node_modules/runsnative/dist/index.js",
+      "runsnative/button":  "../../node_modules/runsnative/dist/button.js",
+      "runsnative/select":  "../../node_modules/runsnative/dist/select.js",
+      "runsnative/text-field": "../../node_modules/runsnative/dist/text-field.js"
+    }
+  }
+  </script>
+
+  <!-- Register components — exactly as the docs show -->
+  <script type="module">
+    import 'runsnative/button';
+  </script>
+</head>
+<body>
+
+  <div class="crumbs"><a href="../../">← hello-world</a></div>
+  <h1>RunsNative · Variants</h1>
+
+  <div class="section">
+    <div class="section-label">Variants</div>
+    <div class="row">
+      <run-button variant="primary">Primary</run-button>
+      <run-button variant="secondary">Secondary</run-button>
+      <run-button variant="ghost">Ghost</run-button>
+      <run-button variant="danger">Danger</run-button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Sizes</div>
+    <div class="row">
+      <run-button variant="primary" size="sm">Small</run-button>
+      <run-button variant="primary" size="md">Medium</run-button>
+      <run-button variant="primary" size="lg">Large</run-button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">States</div>
+    <div class="row">
+      <run-button variant="primary" disabled>Disabled</run-button>
+      <run-button variant="secondary" disabled>Disabled</run-button>
+      <run-button variant="primary" loading>Loading</run-button>
+    </div>
+  </div>
+
+</body>
+</html>

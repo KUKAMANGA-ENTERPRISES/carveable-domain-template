@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>hello-agent surface</title>
+  <link rel="stylesheet" href="../../presentation/styles/tokens.css">
+  <link rel="stylesheet" href="../../presentation/styles/site.css">
+</head>
+<body>
+  <div class="crumbs"><a href="../../">← hello-world</a></div>
+  <h1>hello-agent surface</h1>
+
+  <p>
+    This is an <em>agent surface</em> — the "door" an agent knocks on to interact
+    with this domain. Surfaces are distinct from <code>interface/api/</code>
+    (which is for system-to-system) and <code>presentation/</code> (which is
+    user-facing).
+  </p>
+
+  <div class="section">
+    <div class="section-label">Send greeting</div>
+    <form id="greet-form">
+      <label>Name <input name="name" value="agent" required></label>
+      <button type="submit">Send</button>
+    </form>
+    <pre id="out" style="margin-top:1rem;background:#f1f5f9;padding:0.75rem;border-radius:4px;"></pre>
+  </div>
+
+  <script type="module">
+    const form = document.querySelector("#greet-form");
+    const out  = document.querySelector("#out");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = new FormData(form).get("name");
+      const r = await fetch(`/api/hello?name=${encodeURIComponent(name)}`);
+      out.textContent = JSON.stringify(await r.json(), null, 2);
+    });
+  </script>
+</body>
+</html>
