@@ -1,0 +1,10 @@
+{
+  "name": "hello-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for the hello-world domain — exposes the say_hello tool over stdio.",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "hello-mcp": "./server.js"
+  }
+}

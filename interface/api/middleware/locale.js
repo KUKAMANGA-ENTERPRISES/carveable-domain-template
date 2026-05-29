@@ -18,7 +18,8 @@ export function localeMiddleware(defaultLocale = 'en') {
   return function locale(req, _res, next) {
     const acceptLang = req.headers['accept-language'] ?? '';
     const tag = acceptLang.split(',')[0].trim().split(';')[0].trim().split('-')[0].toLowerCase();
-    req.locale = tag || defaultLocale;
+    // '*' is a wildcard ("accept any language") — not a concrete tag; fall back to default.
+    req.locale = (tag && tag !== '*') ? tag : defaultLocale;
     if (typeof next === 'function') next();
   };
 }
