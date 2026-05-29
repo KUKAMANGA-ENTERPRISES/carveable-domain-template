@@ -11,6 +11,7 @@
     "env-check": "node ops/env-check.js"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "runsnative": "file:runsnative-0.2.0.tgz"
   }
 }

@@ -18,6 +18,9 @@ import { fileURLToPath } from "node:url";
 import { dirname, join, normalize, relative, sep, extname } from "node:path";
 
 import { handleHello } from "./routes/hello.js";
+import { localeMiddleware } from "./middleware/locale.js";
+
+const setLocale = localeMiddleware("en");
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(HERE, "..", "..");
@@ -80,21 +83,27 @@ async function serveStatic(req, res, rel) {
 }
 
 const server = createServer(async (req, res) => {
-  const url = new URL(req.url, `http://${req.headers.host ?? "localhost"}`);
-  const pathname = decodeURIComponent(url.pathname);
+  try {
+    setLocale(req, res, () => {});
 
-  if (pathname === "/api/hello") return handleHello(req, res);
+    const url = new URL(req.url, `http://${req.headers.host ?? "localhost"}`);
+    const pathname = decodeURIComponent(url.pathname);
 
-  if (pathname === "/" || pathname === "/index.html") {
-    return serveStatic(req, res, "index.html");
+    if (pathname === "/api/hello") return handleHello(req, res);
+
+    if (pathname === "/" || pathname === "/index.html") {
+      return serveStatic(req, res, "index.html");
+    }
+
+    // Strip leading slash, check allowlist.
+    const rel = pathname.replace(/^\/+/, "");
+    if (rel === "index.html") return serveStatic(req, res, "index.html");
+    if (isAllowed(rel))       return serveStatic(req, res, rel);
+
+    res.writeHead(404); res.end("Not Found");
+  } catch {
+    if (!res.headersSent) { res.writeHead(500); res.end("Internal Server Error"); }
   }
-
-  // Strip leading slash, check allowlist.
-  const rel = pathname.replace(/^\/+/, "");
-  if (rel === "index.html") return serveStatic(req, res, "index.html");
-  if (isAllowed(rel))       return serveStatic(req, res, rel);
-
-  res.writeHead(404); res.end("Not Found");
 });
 
 // Don't auto-listen when imported (e.g. by tests). Only listen when run directly.
