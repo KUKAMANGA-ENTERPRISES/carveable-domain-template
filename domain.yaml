@@ -33,3 +33,14 @@ carveability:
   #   - .mcp.json has no absolute paths
   #   - Every runtime dep has either an adapter or is consumed via node_modules
   verified_at: "2026-05-28"
+
+mcp_servers:
+  - name: hello-mcp
+    source: ./interface/mcp/hello-mcp
+    version: 0.1.0
+    pinned_at: 2026-05-29
+
+i18n:
+  default_locale: en
+  supported_locales: [en, es]
+  resolution: runtime
