@@ -35,3 +35,16 @@ carveability:
   # - replace any adapter under adapters/ with their own implementation
   # If any of these break, the domain is not carveable.
   verified_at: ""       # ISO date of last carveability audit
+
+# MCP servers exposed by this domain. Each entry declares a server under interface/mcp/<name>/.
+# mcp_servers:
+#   - name: <server-name>
+#     source: ./interface/mcp/<server-name>
+#     version: 0.1.0
+#     pinned_at: <YYYY-MM-DD>
+
+# Localization. Catalogs at i18n/<locale>/; locale-keyed data at state/data/seed/<locale>/.
+# i18n:
+#   default_locale: en
+#   supported_locales: [en]
+#   resolution: hybrid    # build-time | runtime | hybrid
