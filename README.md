@@ -14,6 +14,7 @@ A bounded unit that:
 4. **Carries its own knowledge** (`knowledge/docs/`) — ADRs, examples, contracts in prose
 5. **Carries its own operations story** (`ops/`) — health checks, deploy manifests, runbooks
 6. **Has no absolute paths into sibling repos** — everything it depends on is either in `node_modules/` or wrapped by an adapter
+7. **Carries its own brand media** (`assets/`) — the DAM (images, textures) the domain owns; it travels with the domain on carve-out
 
 Pass these and the domain can be carved out and handed over.
 
@@ -31,7 +32,8 @@ Read [TEMPLATE.md](./TEMPLATE.md) for the step-by-step.
 
 ```
 .claude/         Claude Code project config (team-shared)
-presentation/    pages, MFEs, styles, vendored UI bundles
+presentation/    pages, owned components, MFEs, styles, vendored UI bundles
+assets/          brand media (DAM) + asset-pack.json manifest
 interface/       api routes + machine/prose contracts (inbound boundary)
 behavior/        agents, skills, tools, events, surfaces (orchestration)
 services/        domain operations (the hexagon's inside)

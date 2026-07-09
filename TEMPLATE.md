@@ -38,10 +38,11 @@ Each top-level folder has its own `README.md` explaining what goes inside. The r
 3. **`services/`** — domain operations. Each service composes adapters to do real work.
 4. **`interface/api/`** — thin HTTP layer over services.
 5. **`behavior/`** — agents, skills, tools, events, surfaces. These also call services and adapters.
-6. **`presentation/`** — pages, MFEs, styles. UI consumers of the API.
-7. **`knowledge/docs/`** — record ADRs as you go. CKO will index this once wired.
-8. **`ops/`** — health check, env validator, deploy.
-9. **`tests/integration/`** — cross-layer flows. Unit tests live next to the code they test.
+6. **`presentation/`** — pages, owned `components/`, MFEs, styles. UI consumers of the API.
+7. **`assets/`** — brand media (DAM): the `asset-pack.json` manifest + the media it points at. Only if the domain owns media.
+8. **`knowledge/docs/`** — record ADRs as you go. CKO will index this once wired.
+9. **`ops/`** — health check, env validator, deploy.
+10. **`tests/integration/`** — cross-layer flows. Unit tests live next to the code they test.
 
 ## 6. Verify carveability
 
