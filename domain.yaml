@@ -3,10 +3,13 @@
 # This file declares the domain's identity, what it exposes, and what it
 # depends on. Fill it in when instantiating this template.
 #
-# A `tools/check-carveability.js` script (to be written by your domain) can
-# verify the claims here: every entry under `depends_on.services` must have a
-# matching `adapters/<name>/` folder, every `exports.contracts` path must
-# exist, etc.
+# The required keys, and the referential invariants binding this file to the
+# filesystem (every `depends_on.services` entry has a matching `adapters/<name>/`
+# folder; every `exports.contracts` path exists; etc.), are specified by
+# `kukamanga/docs/governance/domain-standard-v1.md` §7 and §7.1.
+#
+# `tools/check-carveability.js` enforces them. It is one checker that reads the
+# standard, not a script each domain writes for itself (built as JUNE-563).
 
 domain: ""              # e.g. "hello-world", "harlow-pets", "publishing"
 owner_entity: ""        # e.g. "runsnative", "mukadra", "himitsu-bako", or a new customer entity name

@@ -4,6 +4,8 @@ This is a **template** for a self-contained Kukamanga-style domain — a unit of
 
 If you're looking at this on `master`, you're looking at the **mold** — the empty shape. Instances of this template (with real code filled in) live on branches named `example/<name>`.
 
+This repo is the **reference implementation** of the Mukadra Domain Standard v1 (`kukamanga/docs/governance/domain-standard-v1.md`) — the holdings-wide governance standard that fixes the layer contract described below. The standard is normative; this repo demonstrates it. Its top-level layer set is **closed**: see [ADR 0003](./knowledge/docs/adrs/0003-external-governance-by-domain-standard.md).
+
 ## What's a "carveable domain"?
 
 A bounded unit that:
@@ -41,7 +43,8 @@ adapters/        external system wrappers (outbound boundary)
 state/           data schemas, seed, runtime store, CKO index
 knowledge/       docs (ADRs, examples) + cko.config.yaml
 ops/             health, deploy, runbooks
+i18n/            string catalogs, one folder per locale
 tests/           cross-layer integration tests (unit tests are co-located)
 ```
 
-See each layer's own `README.md` for what goes inside.
+See each layer's own `README.md` for what goes inside. The set above is closed — adding to it requires a version bump of the standard.

@@ -14,7 +14,15 @@ A **carveable-domain template** — the empty mold for a Kukamanga-style domain.
 
 ## Architecture in one paragraph
 
-The domain is a hexagon: `services/` is the inside (domain operations), `adapters/` is the outside boundary (every external system wrapped). `interface/` (HTTP + contracts) and `behavior/` (agents, skills, tools, events, surfaces) call into services and adapters. `presentation/` is the user-facing UI layer. `state/`, `knowledge/`, and `ops/` carry data, docs, and operations respectively. Each layer has its own `README.md` explaining what goes inside.
+The domain is a hexagon: `services/` is the inside (domain operations), `adapters/` is the outside boundary (every external system wrapped). `interface/` (HTTP + contracts) and `behavior/` (agents, skills, tools, events, surfaces) call into services and adapters. `presentation/` is the user-facing UI layer. `assets/` is the DAM. `state/`, `knowledge/`, and `ops/` carry data, docs, and operations respectively; `i18n/` carries string catalogs and `tests/` the cross-layer tests. Each layer has its own `README.md` explaining what goes inside.
+
+## Governed by a standard, not by taste
+
+This repo's layer set is not a convention you may extend. It is fixed by the **Mukadra Domain Standard v1** (`kukamanga/docs/governance/domain-standard-v1.md`), a holdings-wide governance standard of which this repo is the **reference implementation**. The standard declares, per layer, what is required, optional, and forbidden, and it is machine-checked.
+
+**The top-level layer set is closed.** Do not create a top-level directory the standard does not name. `src/`, `lib/`, `utils/`, `common/`, `shared/`, `helpers/`, `core/`, and `docs/` are forbidden at the top level — each already has a home below. Adding a layer requires a version bump of the standard *and* an ADR here (precedent: [ADR 0002](./knowledge/docs/adrs/0002-mcp-and-i18n-layers.md)).
+
+This rule exists because you, the agent reading this, will otherwise invent a plausible layout from your training prior — a different one each session. The mold's entire value is that it is the *same* mold. See [ADR 0003](./knowledge/docs/adrs/0003-external-governance-by-domain-standard.md).
 
 ## Hard rules
 
@@ -33,6 +41,7 @@ The domain is a hexagon: `services/` is the inside (domain operations), `adapter
 
 ## What to read next
 
+- `kukamanga/docs/governance/domain-standard-v1.md` — the standard this repo implements. Read it before adding anything structural.
 - [TEMPLATE.md](./TEMPLATE.md) — step-by-step for instantiating
 - [domain.yaml](./domain.yaml) — the manifest (mostly empty on `master`)
 - Each layer's `README.md` for substructure
