@@ -1,0 +1,51 @@
+# Deployment manifest — consumed by the `deployready` capability (contract v1).
+#
+# This file is the ONLY thing that decides where and how this domain deploys.
+# Swapping `adapter:` below retargets the deploy without changing a single other
+# file in this domain. That is the carve exit: managed and DIY are the same
+# contract, different adapters.
+
+adapter: cloudflare-pages
+project: hello-world
+
+# Adapter-namespaced settings. The contract does not interpret this block.
+# `cloudflare-pages` accepts `account_id` and `wrangler_command`.
+#
+# We deliberately leave `account_id` unset: the adapter derives it from the API
+# token, which is scoped to exactly one account. Naming it here would bake a
+# specific tenant's cloud account into this template repo.
+adapter_config: {}
+
+# `node_modules/` is gitignored and `runsnative` installs from the vendored
+# tarball, so the artifact's inputs must be materialised before assembly.
+# The domain declares HOW; the capability does not know what a package manager is.
+build:
+  command: npm ci
+  produces: node_modules/runsnative/dist/index.js
+
+artifact:
+  # Assembled here. Two constraints, both load-bearing:
+  #   * gitignored, so a deploy never dirties the working tree; and
+  #   * inside an existing layer, because the standard's top-level layer set is
+  #     CLOSED (§2). A top-level `dist/` fails the conformance checker the moment
+  #     an artifact exists, even though git ignores it.
+  # The repo's `dist/` ignore rule matches at any depth, so this path is ignored.
+  staging_dir: state/deploy/dist/
+
+  # src (domain-relative) -> dest (artifact-relative).
+  #
+  # The last rule is not cosmetic. `wrangler pages deploy` hard-excludes
+  # `**/node_modules` from every upload (wrangler 4.93.0, wrangler-dist/cli.js:238635).
+  # Left in place, the deploy would succeed, `/` would return 200, and every
+  # runsnative module would 404 — an inert page with no error anywhere. The
+  # importmaps in the pages below therefore point at `vendor/`, not `node_modules/`.
+  copy:
+    - { from: index.html,                    to: index.html }
+    - { from: presentation/,                 to: presentation/ }
+    - { from: assets/,                       to: assets/ }
+    - { from: node_modules/runsnative/dist/, to: vendor/runsnative/dist/ }
+
+# The static surface only. `interface/api/` is a Node server; Pages serves static
+# assets and functions, so the live `/api/hello` route is not deployed by this
+# manifest (compute hosting is tracked separately).
+environments: [staging, prod]

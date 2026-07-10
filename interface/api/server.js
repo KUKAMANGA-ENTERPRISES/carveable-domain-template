@@ -5,7 +5,8 @@
  *   GET  /                        → root index.html (landing page)
  *   GET  /api/hello[?name=]       → the hello service
  *   GET  /presentation/...        → pages, styles, vendored bundles
- *   GET  /node_modules/runsnative/... → installed UI package (importmap needs this)
+ *   GET  /vendor/runsnative/...   → installed UI package (importmap targets)
+ *   GET  /node_modules/runsnative/... → the same files, at their on-disk path
  *
  * Pure Node — no Express, no deps. Zero-dep is a feature: the instance
  * is verifiable carveability — `npm install` only pulls the runsnative
@@ -38,6 +39,21 @@ const STATIC_ALLOWLIST_PREFIX = [
   "interface/contracts/",
   "node_modules/runsnative/",
 ];
+
+// The deployed artifact carries the UI package at `vendor/`, not `node_modules/`
+// (deploy platforms exclude `node_modules` from uploads — see ops/deploy/deploy.yaml).
+// The pages' importmaps therefore target `vendor/`. Serving the same URL shape here
+// means a page behaves identically in dev and in production.
+const STATIC_REWRITE_PREFIX = [
+  ["vendor/runsnative/", "node_modules/runsnative/"],
+];
+
+function rewriteStaticPath(rel) {
+  for (const [from, to] of STATIC_REWRITE_PREFIX) {
+    if (rel.startsWith(from)) return to + rel.slice(from.length);
+  }
+  return rel;
+}
 const STATIC_ALLOWLIST_FILE = new Set([
   "index.html",
   "README.md",
@@ -96,8 +112,8 @@ const server = createServer(async (req, res) => {
       return serveStatic(req, res, "index.html");
     }
 
-    // Strip leading slash, check allowlist.
-    const rel = pathname.replace(/^\/+/, "");
+    // Strip leading slash, map artifact paths onto their on-disk location, check allowlist.
+    const rel = rewriteStaticPath(pathname.replace(/^\/+/, ""));
     if (rel === "index.html") return serveStatic(req, res, "index.html");
     if (isAllowed(rel))       return serveStatic(req, res, rel);
 
