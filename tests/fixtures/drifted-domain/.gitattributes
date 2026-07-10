@@ -1,0 +1,19 @@
+# Default: normalize line endings to LF on commit
+* text=auto eol=lf
+
+# Windows-native scripts must be CRLF — cmd.exe silently skips IF-ELSE
+# branches when scripts are LF-only, with no error.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binary files — never normalize
+*.tgz binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary

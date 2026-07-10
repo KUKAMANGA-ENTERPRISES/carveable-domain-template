@@ -60,10 +60,6 @@ Before considering the domain "shipped":
 
 `tools/check-carveability.js` mechanizes these. It is **not** a script each domain writes: it is one checker that reads `kukamanga/docs/governance/domain-standard-v1.md` §7.1 and is built as JUNE-563.
 
-Run `bash tools/install-hooks.sh` once so the checker blocks non-conforming
-commits locally; `.github/workflows/carveability.yml` enforces the same
-check in CI regardless of whether the local hook is installed.
-
 ## What NOT to put in the template
 
 If you find yourself wanting to add a feature to the template, ask: would *every* domain need this? If not, it's instance content. Examples of things that belong on `example/<name>` branches, not `master`:

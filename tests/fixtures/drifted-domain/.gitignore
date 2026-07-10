@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Local environment + secrets
+.env
+.env.local
+.env.*.local
+
+# Claude Code local overrides
+.claude/settings.local.json
+
+# Runtime state (data, indexes, caches)
+state/data/store/
+state/.cko/
+state/data/exports/
+
+# Build / test artifacts
+dist/
+build/
+coverage/
+*.log
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+!.vscode/extensions.json

@@ -32,22 +32,6 @@ This rule exists because you, the agent reading this, will otherwise invent a pl
 4. **Master stays empty.** If you're tempted to commit working `hello-*` code to master, you're on the wrong branch — switch to `example/hello-world` (or create a new `example/<name>`).
 5. **Tools are thin.** A `behavior/tools/<name>` file should be a 5-line wrapper that translates agent-arg-shape into a `services/<name>` call. Business logic lives in services, not tools.
 
-## Enforcement (JUNE-563)
-
-The standard is machine-checked by `tools/check-carveability.js`, which reads
-`domain-standard-v1.md` §5/§7.1/§11 and reports located, actionable drift —
-not a script each instance writes for itself.
-
-- **Locally:** run `bash tools/install-hooks.sh` once after cloning. It sets
-  `core.hooksPath` to `tools/`, so `tools/pre-commit` runs the checker on
-  every commit and **blocks** (does not warn) on drift.
-- **CI:** `.github/workflows/carveability.yml` runs the same checker on every
-  push and PR, so drift is caught even with no local hook installed.
-- **Ad hoc:** `npm run check-carveability` (or `node tools/check-carveability.js .`).
-- **Regression tests:** `npm test` runs `tests/check-carveability.test.js`,
-  which asserts the checker passes on this repo's own mold and fails — with
-  located messages — on `tests/fixtures/drifted-domain/`.
-
 ## Naming conventions
 
 - Adapters folders: lowercase-hyphenated by external system (`adapters/postgres/`, `adapters/mukadra-engine/`)
