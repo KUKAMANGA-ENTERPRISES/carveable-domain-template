@@ -1,4 +1,11 @@
 # Domain Manifest — hello-world instance
+#
+# The required keys, and the referential invariants binding this file to the
+# filesystem, are specified by `kukamanga/docs/governance/domain-standard-v1.md`
+# §7 and §7.1, and enforced by `tools/check-carveability.js` (JUNE-563).
+#
+# A non-empty `domain:` below is what scopes this tree as an *instance* rather
+# than the mold — see §3.
 
 domain: hello-world
 owner_entity: runsnative   # the entity authoring this instance; a real customer install would set their own
@@ -27,12 +34,12 @@ slo:
   rto: "n/a — stateless"
 
 carveability:
-  # Manual check — automate via tools/check-carveability.js when ready.
-  # Last verified against:
-  #   - No file under services/, adapters/, interface/ contains C:\_DEV\KUKAMANGA\<other>
-  #   - .mcp.json has no absolute paths
-  #   - Every runtime dep has either an adapter or is consumed via node_modules
-  verified_at: "2026-05-28"
+  # Automated: `npm run check-carveability` (tools/check-carveability.js, JUNE-563)
+  # enforces §5, §6, and the eight §7.1 referential invariants at instance scope.
+  # Last audit (§7.1.8): checker green, `npm test` green (integration +
+  # conformance), `npm run health` green, adapters/echo replaceable, state/ empty
+  # and exportable.
+  verified_at: "2026-07-10"
 
 mcp_servers:
   - name: hello-mcp

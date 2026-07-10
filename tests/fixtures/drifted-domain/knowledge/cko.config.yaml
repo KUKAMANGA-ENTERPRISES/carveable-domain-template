@@ -1,0 +1,30 @@
+# CKO Corpus Configuration
+#
+# Declares what the CKO (Chief Knowledge Officer) should index for this
+# domain. Filled in when CKO is wired up (the template ships this empty).
+
+corpus:
+  include:
+    # Default scope: all markdown in the repo, plus the manifest.
+    # Adjust per domain.
+    - "README.md"
+    - "TEMPLATE.md"
+    - "AGENTS.md"
+    - "domain.yaml"
+    - "knowledge/docs/**/*.md"
+    - "**/README.md"
+    - "interface/contracts/**/*.md"
+  exclude:
+    - "node_modules/**"
+    - "state/data/store/**"
+    - "state/.cko/**"
+    - "tests/**"
+
+freshness:
+  # How often to re-index, in seconds. CKO may override.
+  reindex_interval_seconds: 3600
+
+  # If a file's mtime is older than this, flag it for review.
+  stale_after_days: 90
+
+index_path: "state/.cko/"

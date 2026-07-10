@@ -32,6 +32,7 @@ const PORT = Number.parseInt(process.env.HELLO_PORT ?? "8910", 10);
 // interface/api/, .git/, .env*) are intentionally absent.
 const STATIC_ALLOWLIST_PREFIX = [
   "presentation/",
+  "assets/",
   "behavior/surfaces/",
   "knowledge/",
   "interface/contracts/",

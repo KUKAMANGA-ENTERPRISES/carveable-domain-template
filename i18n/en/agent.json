@@ -1,0 +1,5 @@
+{
+  "tool.say_hello.description": "Return a greeting. Optionally specify a recipient name.",
+  "tool.say_hello.arg.name": "Recipient. Defaults to 'world'.",
+  "agent.hello-agent.description": "Greets a recipient by composing the hello skill and the say_hello tool."
+}

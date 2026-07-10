@@ -30,13 +30,17 @@
     import 'runsnative/link';
     import 'runsnative/stack';
     import 'runsnative/code-block';
+    import '../components/hw-brand-mark.js';
   </script>
 </head>
 <body>
   <main class="page">
     <run-stack direction="vertical" gap="xl">
 
-      <run-link href="../../">← hello-world</run-link>
+      <run-stack direction="horizontal" gap="sm">
+        <hw-brand-mark asset-key="brand.mark" size="24"></hw-brand-mark>
+        <run-link href="../../">← hello-world</run-link>
+      </run-stack>
 
       <run-stack direction="vertical" gap="sm">
         <run-text variant="display" weight="bold" class="size-4xl">Hello, world</run-text>

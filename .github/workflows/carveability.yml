@@ -1,0 +1,25 @@
+name: Carveability conformance
+
+# Enforcement point 2b (JUNE-563): CI check for the Mukadra Domain Standard.
+# Runs the same checker as the pre-commit hook (tools/pre-commit), so drift
+# that slips past a local hook (no hook installed, --no-verify, etc.) is
+# still caught before merge.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  check-carveability:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run conformance checker regression tests
+        run: node tests/check-carveability.test.js
+      - name: Check carveability of this ref
+        run: node tools/check-carveability.js .

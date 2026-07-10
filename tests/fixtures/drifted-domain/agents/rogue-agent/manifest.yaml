@@ -1,0 +1,3 @@
+# Deliberately misplaced: an agent manifest belongs at behavior/agents/<name>/manifest.yaml,
+# not at a top-level agents/ directory. This fixture exists to prove the checker catches it.
+name: rogue-agent

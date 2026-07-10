@@ -38,12 +38,15 @@ Each top-level folder has its own `README.md` explaining what goes inside. The r
 3. **`services/`** — domain operations. Each service composes adapters to do real work.
 4. **`interface/api/`** — thin HTTP layer over services.
 5. **`behavior/`** — agents, skills, tools, events, surfaces. These also call services and adapters.
-6. **`presentation/`** — pages, MFEs, styles. UI consumers of the API.
-7. **`knowledge/docs/`** — record ADRs as you go. CKO will index this once wired.
-8. **`ops/`** — health check, env validator, deploy.
-9. **`tests/integration/`** — cross-layer flows. Unit tests live next to the code they test.
+6. **`presentation/`** — pages, owned `components/`, MFEs, styles. UI consumers of the API.
+7. **`assets/`** — brand media (DAM): the `asset-pack.json` manifest + the media it points at. Only if the domain owns media.
+8. **`knowledge/docs/`** — record ADRs as you go. CKO will index this once wired.
+9. **`ops/`** — health check, env validator, deploy.
+10. **`tests/integration/`** — cross-layer flows. Unit tests live next to the code they test.
 
 ## 6. Verify carveability
+
+**This checklist is instance-scope.** It applies to *your domain* before it ships — not to this template's `master`, which deliberately ships the holes these items fill. (`master` legitimately has no `ops/health/check.sh` and no `0001-domain-shape.md`; that is the mold conforming, not the mold drifting. See `domain-standard-v1` §3.)
 
 Before considering the domain "shipped":
 
@@ -52,9 +55,14 @@ Before considering the domain "shipped":
 - [ ] `.mcp.json` paths are relative or `node_modules/`-resolvable
 - [ ] `ops/health/check.sh` passes
 - [ ] `tests/integration/` passes
-- [ ] `knowledge/docs/adrs/0001-domain-shape.md` exists
+- [ ] `knowledge/docs/adrs/0001-domain-shape.md` exists — **you** write this; the mold does not ship one, so that a mold-supplied file cannot satisfy this check vacuously
+- [ ] No top-level directory exists outside the set the standard names
 
-A `tools/check-carveability.js` script can mechanize most of these — write it as your domain matures.
+`tools/check-carveability.js` mechanizes these. It is **not** a script each domain writes: it is one checker that reads `kukamanga/docs/governance/domain-standard-v1.md` §7.1 and is built as JUNE-563.
+
+Run `bash tools/install-hooks.sh` once so the checker blocks non-conforming
+commits locally; `.github/workflows/carveability.yml` enforces the same
+check in CI regardless of whether the local hook is installed.
 
 ## What NOT to put in the template
 
