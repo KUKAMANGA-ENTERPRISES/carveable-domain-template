@@ -6,9 +6,10 @@
   "private": true,
   "scripts": {
     "start": "node interface/api/server.js",
-    "test": "node --test \"tests/integration/**/*.test.js\"",
+    "test": "node --test \"tests/integration/**/*.test.js\" && node tests/check-carveability.test.js",
     "health": "bash ops/health/check.sh",
-    "env-check": "node ops/env-check.js"
+    "env-check": "node ops/env-check.js",
+    "check-carveability": "node tools/check-carveability.js ."
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

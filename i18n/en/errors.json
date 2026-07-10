@@ -1,0 +1,5 @@
+{
+  "http.403": "Forbidden",
+  "http.404": "Not Found",
+  "http.500": "Internal Server Error"
+}

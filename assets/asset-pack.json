@@ -1,0 +1,9 @@
+{
+  "$contract": "theme-skin-asset-manifest-v1",
+  "scope": "brand",
+  "key": "hello-world",
+  "version": 1,
+  "assets": {
+    "brand.mark": "media/brand/mark.svg"
+  }
+}

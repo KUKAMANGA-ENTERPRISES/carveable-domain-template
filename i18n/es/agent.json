@@ -1,0 +1,5 @@
+{
+  "tool.say_hello.description": "Devuelve un saludo. Opcionalmente, indica el nombre del destinatario.",
+  "tool.say_hello.arg.name": "Destinatario. Por defecto, 'world'.",
+  "agent.hello-agent.description": "Saluda a un destinatario componiendo la skill hello y la herramienta say_hello."
+}

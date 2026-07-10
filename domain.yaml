@@ -1,4 +1,11 @@
 # Domain Manifest — hello-world instance
+#
+# The required keys, and the referential invariants binding this file to the
+# filesystem, are specified by `kukamanga/docs/governance/domain-standard-v1.md`
+# §7 and §7.1, and enforced by `tools/check-carveability.js` (JUNE-563).
+#
+# A non-empty `domain:` below is what scopes this tree as an *instance* rather
+# than the mold — see §3.
 
 domain: hello-world
 owner_entity: runsnative   # the entity authoring this instance; a real customer install would set their own

@@ -1,0 +1,11 @@
+{
+  "name": "carveable-domain-template",
+  "version": "0.1.0",
+  "description": "Template for a self-contained Kukamanga-style domain. Master = mold; example/<name> branches = instances.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "health": "bash ops/health/check.sh",
+    "env-check": "node ops/env-check.js"
+  }
+}

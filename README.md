@@ -4,12 +4,14 @@ This is the **proving instance** for the carveable-domain template. Every layer 
 
 > Master branch is the template. This branch (`example/hello-world`) is the material that proves it.
 
+This branch is an **instance** of the Mukadra Domain Standard v1 (`kukamanga/docs/governance/domain-standard-v1.md`); `master` is the mold. The standard is normative, and `tools/check-carveability.js` enforces it — `npm run check-carveability` must exit 0 here at *instance* scope (§3).
+
 ## Run
 
 ```bash
 npm install            # resolves runsnative from in-repo tarball; no network needed
 npm start              # → http://127.0.0.1:8910/
-npm test               # node's built-in test runner; zero deps
+npm test               # integration tests + conformance check; zero deps
 npm run health         # ops/health/check.sh — exits 0 if all layers respond
 ```
 
