@@ -1,0 +1,32 @@
+# Fixture: a manifest whose scalars use YAML's bare (unquoted) form.
+#
+# Both spellings below are valid YAML and are what an instance naturally
+# writes. A checker that only reads the double-quoted form sees domain: ""
+# here, downgrades the domain to mold scope, and fails open on every [I]
+# requirement (§3) and on §7.1.8. This fixture pins that open.
+#
+# It is intentionally structure-less: the assertions in
+# tests/check-carveability.test.js read the reported *scope* and the presence
+# of an instance-only [I] finding, not the (many, expected) layer failures.
+
+domain: bare-scalar-fixture
+owner_entity: mukadra
+version: 0.1.0
+
+exports:
+  contracts: []
+  events: []
+  surfaces: []
+
+depends_on:
+  runtime: []
+  services: []
+  mcp_servers: []
+
+slo:
+  availability: "n/a — fixture"
+  rpo: "n/a"
+  rto: "n/a"
+
+carveability:
+  verified_at: 2026-07-10
