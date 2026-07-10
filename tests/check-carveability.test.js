@@ -34,11 +34,13 @@ function assert(condition, message) {
   }
 }
 
-// 1. The mold (this repo's own root) must pass — a conforming domain is not
-// blocked by its own checker.
-const moldResult = run(REPO_ROOT);
-assert(moldResult.code === 0, "checker exits 0 on the mold (repo root)");
-assert(/PASS/.test(moldResult.stdout), "checker prints PASS on the mold");
+// 1. This repo's own root must pass — a conforming domain is not blocked by
+// its own checker. This file runs from both branches: on `master` the root is
+// the mold, on `example/<name>` it is an instance. Assert conformance, not a
+// particular scope, or the suite breaks the moment it is merged forward.
+const rootResult = run(REPO_ROOT);
+assert(rootResult.code === 0, "checker exits 0 on this repo's root");
+assert(/PASS/.test(rootResult.stdout), "checker prints PASS on this repo's root");
 
 // 2. The deliberately-drifted fixture must fail, and the failure must be
 // located and actionable — not a generic "something's wrong".
@@ -77,9 +79,11 @@ assert(
   "bare `verified_at: <date>` parses as a valid ISO date (§7.1.8)"
 );
 
-// 4. The mold's own quoted-empty `domain: ""` must still read as mold — the
-// fix must not flip the mold into instance scope.
-assert(/scope: mold/.test(moldResult.stdout), 'quoted-empty `domain: ""` still scopes as mold');
+// 4. A quoted-empty `domain: ""` must still read as mold — the bare-scalar fix
+// must not flip an unfilled manifest into instance scope. Asserted against the
+// drifted fixture (which declares `domain: ""`) rather than this repo's root,
+// so it holds on the mold and on an instance branch alike.
+assert(/scope: mold/.test(fixtureResult.stdout), 'quoted-empty `domain: ""` still scopes as mold');
 
 if (failures > 0) {
   console.error(`\n${failures} assertion(s) failed.`);
