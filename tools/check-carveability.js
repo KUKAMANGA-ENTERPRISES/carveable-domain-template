@@ -190,11 +190,23 @@ function readDomainYaml() {
     .filter((line) => !/^\s*#/.test(line))
     .join("\n");
 
-  const domainMatch = text.match(/^domain:\s*"([^"]*)"/m);
-  const domain = domainMatch ? domainMatch[1] : "";
+  // Scalars may be written quoted ("x"), single-quoted ('x'), or bare (x) —
+  // all three are valid YAML, and an instance naturally writes the bare form.
+  // Reading only the quoted form silently yields "" for a filled manifest,
+  // which downgrades a real instance to mold scope and fails open on every
+  // [I] requirement (§3, §7.1.8).
+  function scalar(re) {
+    const m = text.match(re);
+    if (!m) return "";
+    return m[1]
+      .replace(/\s+#.*$/, "")
+      .trim()
+      .replace(/^(["'])([\s\S]*)\1$/, "$2")
+      .trim();
+  }
 
-  const verifiedAtMatch = text.match(/^\s*verified_at:\s*"([^"]*)"/m);
-  const verifiedAt = verifiedAtMatch ? verifiedAtMatch[1] : "";
+  const domain = scalar(/^domain:[ \t]*(.*)$/m);
+  const verifiedAt = scalar(/^[ \t]*verified_at:[ \t]*(.*)$/m);
 
   function listBlock(key) {
     // Matches "  key:\n    - a\n    - b" style YAML lists under a 2-space-indented parent key.
