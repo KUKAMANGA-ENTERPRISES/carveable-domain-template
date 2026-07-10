@@ -85,6 +85,15 @@ assert(
 // so it holds on the mold and on an instance branch alike.
 assert(/scope: mold/.test(fixtureResult.stdout), 'quoted-empty `domain: ""` still scopes as mold');
 
+// 5. §12.1 — the checker declares the major version of the standard it
+// implements, in its output. This is the staleness signal that replaces a
+// shared runtime artifact (which §4.1 forbids): when the standard bumps to
+// v2, this assertion is the tripwire that this copy hasn't moved.
+assert(
+  /standard v1\b/.test(rootResult.stdout),
+  "checker declares the standard version it implements (§12.1)"
+);
+
 if (failures > 0) {
   console.error(`\n${failures} assertion(s) failed.`);
   process.exit(1);

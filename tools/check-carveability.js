@@ -18,11 +18,18 @@ import path from "node:path";
 
 const ROOT = path.resolve(process.argv[2] || ".");
 
+// §12.1 — the major version of the standard this checker implements. There is
+// deliberately no shared runtime artifact to import (§4.1: a carve-out must
+// not inherit a Holdings dependency); this declaration is how staleness is
+// caught instead. Bump it only when this file is actually migrated to a new
+// major version of the standard.
+const STANDARD_VERSION = "1";
+
 // §2 / §5 — the closed set. Anything else at top level is a violation.
-// ".git", "node_modules", ".github", and "tools" are platform/tooling
-// scaffolding, not domain layers — same class of exception the standard
-// implicitly grants ".git" itself. "tools/" specifically hosts this checker;
-// domain.yaml's own header comment and ADR 0003 already presuppose it.
+// ".git", ".github", "node_modules", and "tools" are the §2
+// platform-scaffolding exemption (explicit as of 2026-07-10): outside the
+// layer set, not an extension of it. "tools/" is bounded to standard-serving
+// tooling — this checker, the hook installers.
 const ALLOWED_TOP_LEVEL_DIRS = new Set([
   "interface", "behavior", "services", "adapters", "presentation",
   "assets", "state", "knowledge", "ops", "i18n", "tests", ".claude",
@@ -494,7 +501,7 @@ function main() {
     checkCarveabilityVerifiedAt(manifest, scope);
   }
 
-  console.log(`Mukadra Domain Standard conformance check — scope: ${scope}`);
+  console.log(`Mukadra Domain Standard conformance check — standard v${STANDARD_VERSION}, scope: ${scope}`);
   console.log(`Root: ${ROOT}\n`);
 
   if (findings.length === 0) {
