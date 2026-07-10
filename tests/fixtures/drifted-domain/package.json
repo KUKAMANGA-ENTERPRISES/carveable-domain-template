@@ -6,8 +6,6 @@
   "private": true,
   "scripts": {
     "health": "bash ops/health/check.sh",
-    "env-check": "node ops/env-check.js",
-    "check-carveability": "node tools/check-carveability.js .",
-    "test": "node tests/check-carveability.test.js"
+    "env-check": "node ops/env-check.js"
   }
 }

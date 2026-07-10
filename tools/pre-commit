@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Pre-commit enforcement point for the Mukadra Domain Standard (JUNE-563).
+# Installed via `bash tools/install-hooks.sh`. Blocks the commit — does not
+# warn — on structural drift, so a misplaced artifact never lands.
+set -e
+ROOT="$(git rev-parse --show-toplevel)"
+node "$ROOT/tools/check-carveability.js" "$ROOT"

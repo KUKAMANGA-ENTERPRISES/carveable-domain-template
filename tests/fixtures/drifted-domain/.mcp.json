@@ -1,0 +1,4 @@
+{
+  "_note": "Wire MCP servers your domain depends on. Paths MUST be relative or node_modules-resolvable. Absolute paths into sibling repos (e.g. 'C:/_DEV/...') are a carveability violation — they make the domain non-portable.",
+  "mcpServers": {}
+}
