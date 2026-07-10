@@ -19,7 +19,8 @@ npm run health         # ops/health/check.sh — exits 0 if all layers respond
 
 | Layer | What's here |
 |---|---|
-| **presentation** | Landing page (`index.html`), hello page (live API call), RunsNative variants/bundle-test demos, shared site CSS, brand tokens, vendored bundles |
+| **presentation** | Landing page (`index.html`), hello page (live API call), RunsNative variants/bundle-test demos, shared site CSS, brand tokens, vendored bundles; `components/hw-brand-mark.js` — the domain's own owned component, rendering the DAM's mark |
+| **assets** | `media/brand/mark.svg` + `asset-pack.json` binding `brand.mark` → that path. Inert data: the pack says *where*, `hw-brand-mark` says *how* |
 | **interface** | Zero-dep Node HTTP server + `/api/hello` route; OpenAPI + prose contracts |
 | **behavior** | `hello-agent` composing `hello-skill` + `say_hello` tool; `on-startup` event; agent surface page |
 | **services** | `hello/index.js` — composes adapters/echo to produce a greeting |
@@ -27,7 +28,8 @@ npm run health         # ops/health/check.sh — exits 0 if all layers respond
 | **state** | Empty (hello-world is stateless) |
 | **knowledge** | ADR 0001 (why this shape) + walkthrough + cko.config.yaml |
 | **ops** | `health/check.sh` (per-layer probes), `env-check.js` |
-| **tests** | `integration/hello.test.js` — boots the server, hits the API, verifies layer trace |
+| **i18n** | `en/` + `es/`, three scope files each: `ui.json`, `errors.json` (the 403/404/500 the server actually emits), `agent.json` (the `say_hello` tool description) |
+| **tests** | `integration/hello.test.js` — boots the server, hits the API, verifies layer trace; `check-carveability.test.js` — conformance regression |
 
 ## The full layer trace
 
